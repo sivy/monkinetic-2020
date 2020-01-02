@@ -1,0 +1,32 @@
+{{ define "base" }}
+<!DOCTYPE html>
+{{ template "head" }}
+
+<body>
+  {{ template "header" }}
+
+  <div class="sidebar">
+    <h1 id="title">
+      <span class="main"><a href="/">monkinetic</a></span>
+      <span class="subhead">the blog</span>
+    </h1>
+    <p class="byline">{{ .Config.Blog.Meta.description | markdown }}</p>
+
+    <nav>
+      <ul class="nav navbar-nav">
+        <li><a href="/about">About This Site</a></li>
+        <li><a href="/archive">Archive</a></li>
+        {{ template "icons" }}
+      </ul>
+    </nav>
+  </div>
+
+  <div class="page">
+    {{ template "main" . }}
+  </div>
+
+  {{ template "footer" }}
+</body>
+
+</html>
+{{ end }}

@@ -1,0 +1,9 @@
+{{ define "footer" }}
+<script src="/static/js/main.js"></script>
+
+{{ if .Config.Blog.Meta.footer_text }}
+<footer class="site-footer">
+	<p class="text">{{ .Config.Blog.Meta.footer_text }}</p>
+</footer>
+{{ end }}
+{{ end }}

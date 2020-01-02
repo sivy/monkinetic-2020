@@ -1,0 +1,46 @@
+{{ define "head" }}
+
+<head>
+	<meta charset="utf-8">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:regular,bold&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/static/styles.css">
+	<title>{{ block "title" . }}monkinetic.blog{{ end }}</title>
+	<link rel="alternate" type="application/atom+xml" title="monkinetic.blog" href="/feed.xml">
+
+	<meta name="description"
+		content="{{ if .Body }}{{ .Body|striptags|excerpt }}{{ else }}{{ .Config.Blog.Subhead }}{{ end }}">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-Frame-Options" content="sameorigin">
+
+	<meta name="twitter:site" content=".Config.Services.twitter.link ">
+	<meta name="twitter:creator" content="{{ .Config.Services.twitter.id }}">
+	<meta name="twitter:card" content="summary">
+
+	{{ if .Title }}
+	<meta name="twitter:title" content="{{ .Title }}">
+	<meta name="twitter:description"
+		content="{{ if .Body }}{{ .Body|striptags|excerpt }}{{ else }}{{ .Config.Blog.Subhead }}{{ end }}">
+	{{ else }}
+	<meta name="twitter:title" content="{{ .Config.Blog.Title }}">
+	<meta name="twitter:description" content="{{ .Config.Blog.Subhead }}">
+	{{ end }}
+
+	<!-- CSS -->
+	<!-- <link rel="stylesheet" href="{{ "/css/main.css" }}">
+    <link rel="stylesheet" href="/static/styles.css"> -->
+
+	<!--Favicon-->
+	<!-- <link rel="shortcut icon" href="{{ "/favicon.ico" }}" type="image/x-icon"> -->
+
+	<!-- webmention -->
+	<link rel="pingback" href="https://webmention.io/monkinetic.blog/xmlrpc" />
+	<link rel="webmention" href="https://webmention.io/monkinetic.blog/webmention" />
+
+	<!-- RSS -->
+	<link rel="alternate" type="application/atom+xml" title="{{ .Config.Blog.Title }}" href="/feed.xml" />
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css">
+
+</head>
+{{ end }}

@@ -1,0 +1,14 @@
+{{ define "main" }}
+<h2>Login</h2>
+<form action="/signin" method="POST">
+    <div>
+        <h3>Name</h3>
+        <input name="username" type="text" size="35" />
+    </div>
+    <div>
+        <h3>Password</h3>
+        <input name="password" type="password" size="35" />
+    </div>
+    <p><button>Login</button></p>
+</form>
+{{ end }}

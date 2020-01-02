@@ -1,0 +1,36 @@
+{{ define "main"}}
+
+{{ if .IsOwner }}
+<div class="postform edit" style="padding: 0 1em 1em; border: 1px solid #ddd">
+    <h2>New Post</h2>
+    <form id="postform" action="{{ .FormAction }}" method="POST">
+        <div class="form-section">
+            <label for="title">Title</label>
+            <input type="text" name="title" placeholder="Post Title" value="{{ .Post.Title }}" />
+        </div>
+        <div class="form-section">
+            <label for="slug">Slug: {{ .Post.Slug }}</label>
+        </div>
+        <div class="form-section">
+            <label for="tags">Tags</label>
+            <input type="text" name="tags" placeholder="Post Tags" value="{{ .Post.Tags | join ", " }}" />
+        </div>
+        <div class="form-section">
+            <label for="tags">Post content (markdown supported)</label>
+            <textarea name="body" rows="{{ .TextHeight | default 10 }}"
+                placeholder="Post content">{{ .Post.Body }}</textarea>
+        </div>
+        <button>Save Post</button>
+    </form>
+
+    <form id="deleteform" action="/delete" method="POST">
+        <div class="form-section danger">
+            <h2>Delete this Post</h2>
+            <p>This cannot be undone!</p>
+            <input type="hidden" value="{{ .Post.ID }}" name="postID" />
+            <button id="delete" onclick="return window.confirm('Delete post {{ .Post.Title }}?');">Delete Post</button>
+        </div>
+    </form>
+</div>
+{{ end }}
+{{ end }}
