@@ -2,8 +2,9 @@
 
 {{ if .IsOwner }}
 <div class="postform edit" style="padding: 0 1em 1em; border: 1px solid #ddd">
-    <h2>New Post</h2>
-    <form id="postform" action="{{ .FormAction }}" method="POST">
+    <h2>Edit Post</h2>
+    <form enctype="multipart/form-data" id="postform" action="{{ .FormAction }}" method="POST">
+        <input type="hidden" name="postID" value="{{ .Post.ID }}" />
         <div class="form-section">
             <label for="title">Title</label>
             <input type="text" name="title" placeholder="Post Title" value="{{ .Post.Title }}" />
@@ -14,6 +15,9 @@
         <div class="form-section">
             <label for="tags">Tags</label>
             <input type="text" name="tags" placeholder="Post Tags" value="{{ .Post.Tags | join ", " }}" />
+        </div>
+        <div class="form-section">
+            <label>Add Image <input type="file" name="postimage" /></label>
         </div>
         <div class="form-section">
             <label for="tags">Post content (markdown supported)</label>
