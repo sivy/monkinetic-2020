@@ -1,0 +1,14 @@
+- name: Install supervisord
+become: yes
+apt:
+  name: supervisor
+  state: present
+  update_cache: yes
+
+- name: Start supervisord
+become: yes
+service:
+  name: "supervisor"
+  state: started
+  enabled: yes
+

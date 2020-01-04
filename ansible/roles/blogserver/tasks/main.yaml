@@ -1,0 +1,85 @@
+- name: Create app group
+  become: yes
+  group:
+    name: '{{app_group}}'
+    state: present
+
+- name: Create app user
+  become: yes
+  user:
+    name: '{{app_user}}'
+    state: present
+    groups: '{{app_group}},users'
+    shell: /bin/bash
+
+- name: Download goldfrogd from S3 bucket
+  get_url:
+    url: "{{ goldfrog_dist }}"
+    dest: /root/goldfrogd.tgz
+    force: true
+
+- name: Unarchive goldfrogd
+  become: yes
+  unarchive:
+    src: goldfrogd.tgz
+    dest: /root
+    remote_src: true
+
+# - name: Cleanup archive
+#   file:
+#     path: goldfrogd.tar.gz
+#     state: absent
+
+- name: Install goldfrogd
+  become: yes
+  copy:
+    src: dist/goldfrogd
+    dest: /usr/bin
+    remote_src: yes
+
+- name: Set goldfrogd perms
+  become: yes
+  file:
+    path: /usr/bin/goldfrogd
+    mode: u=rwx,g=rx,o=rx
+
+- name: Install indexer
+  become: yes
+  copy:
+    src: dist/indexer
+    dest: /usr/bin/goldfrog-indexer
+    remote_src: yes
+
+- name: Set indexer perms
+  become: yes
+  file:
+    path: /usr/bin/goldfrog-indexer
+    mode: u=rwx,g=rx,o=rx
+
+- name: Clone blog files
+  # become: yes
+  git:
+    repo: "{{ project_repo }}"
+    dest: "{{ project_location }}"
+    update: yes
+
+- name: Create Goldfrog Config
+  template:
+    src: config.yaml.j2
+    dest: "{{ blog_home }}/config.yaml"
+
+- name: Create goldfrogd service
+  template:
+    src: goldfrog.service.j2
+    dest: /etc/systemd/system/goldfrogd.service
+
+- name: Start Goldfrog service, if not started
+  service:
+    name: goldfrogd
+    enabled: yes
+    state: started
+
+- name: Index files
+  command: "/usr/bin/goldfrog-indexer"
+  environment:
+    BLOGHOME: "{{ blog_home }}"

@@ -1,0 +1,32 @@
+blog:
+    title: monkinetic.blog
+    subhead: Since 1999, XVI Edition
+    author: Steve Ivy
+    meta:
+        footer_text: "&copy; Copyright 1999-2019, Steve Ivy"
+        description: >
+            The weblog of Steve Ivy, going since 1999 in one form or another. Still something of a CMS junkie.
+
+            XVI Edition.
+
+services:
+    github:
+        id: sivy
+        link: "https://github.com/sivy/"
+        class: fa-github
+    toot.cafe:
+        id: "@toot.cafe/sivy"
+        link: "https://toot.cafe/@sivy"
+        icon: "/img/mastodon_logo.svg"
+    twitter:
+        id: "@steveivy"
+        link: "https://twitter.com/steveivy"
+        class: fa-twitter
+
+signin:
+    username: "{{ blog_auth_user }}"
+    password: "{{ blog_auth_password}}"
+
+server:
+    location: "{{ blog_server_location }}"
+    port: "{{ blog_server_port }}"

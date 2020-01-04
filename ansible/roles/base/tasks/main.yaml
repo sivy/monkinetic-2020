@@ -1,0 +1,14 @@
+- name: Enable EPEL
+  become: yes
+  yum:
+    name: epel-release
+
+- name: Install Deps
+  become: yes
+  yum:
+    name:
+      - glib*
+      - git
+      - unzip
+      - tar
+    #   - daemonize

@@ -1,0 +1,10 @@
+[Unit]
+Description=Goldfrog Blog Server
+
+[Service]
+Environment="BLOGHOME={{ blog_home }}"
+ExecStart=/usr/bin/goldfrogd
+
+[Install]
+WantedBy=multi-user.target
+Alias=goldfrog blog
