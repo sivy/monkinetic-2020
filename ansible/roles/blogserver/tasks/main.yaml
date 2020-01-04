@@ -56,18 +56,6 @@
     path: /usr/bin/goldfrog-indexer
     mode: u=rwx,g=rx,o=rx
 
-- name: Clone blog files
-  # become: yes
-  git:
-    repo: "{{ project_repo }}"
-    dest: "{{ project_location }}"
-    update: yes
-
-- name: Create Goldfrog Config
-  template:
-    src: config.yaml.j2
-    dest: "{{ blog_home }}/config.yaml"
-
 - name: Create goldfrogd service
   template:
     src: goldfrog.service.j2
@@ -78,8 +66,3 @@
     name: goldfrogd
     enabled: yes
     state: started
-
-- name: Index files
-  command: "/usr/bin/goldfrog-indexer"
-  environment:
-    BLOGHOME: "{{ blog_home }}"
