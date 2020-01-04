@@ -9,9 +9,9 @@
     update: yes
 
 - name: Create Goldfrog Config
-    template:
-      src: config.yaml.j2
-      dest: "{{ blog_home }}/config.yaml"
+  template:
+    src: config.yaml.j2
+    dest: "{{ blog_home }}/config.yaml"
 
 - name: Index files
   command: "/usr/bin/goldfrog-indexer"

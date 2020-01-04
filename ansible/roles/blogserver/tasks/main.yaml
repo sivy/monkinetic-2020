@@ -25,11 +25,6 @@
     dest: /root
     remote_src: true
 
-# - name: Cleanup archive
-#   file:
-#     path: goldfrogd.tar.gz
-#     state: absent
-
 - name: Install goldfrogd
   become: yes
   copy:
