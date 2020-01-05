@@ -1,7 +1,6 @@
 {{ define "main" }}
 <article>
-    <h2><a href="{{ .Post.Slug }}"><span class="title-hash" style="font-weight: normal">#</span> {{ .Post.Title }}</a>
-    </h2>
+    <h2>{{ .Post.Title }}</h2>
     <p class="meta">
         Published on {{ .Post.PostDate.Format "Jan 02, 2006" }}{{ if .IsOwner }} - <a
             href="/edit/{{ .Post.ID }}">Edit</a>{{ end }}

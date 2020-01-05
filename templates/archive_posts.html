@@ -1,9 +1,9 @@
 {{ define "main" }}
-<h2>Archive {{ .Year }}/{{ .Month }}</h2>
+<h2>Monkinetic Archive, {{ .Year }}/{{ .Month }}</h2>
 
 <ul>
     {{ range .Posts }}
-    <li><a href="{{ .Url }}">{{ .Title }}</a></li>
+    <li><a href="{{ .Url }}">{{ .Title }}</a> - {{ .PostDate.Format "Jan 02, 2006" }}</li>
     {{ end }}
 </ul>
 
