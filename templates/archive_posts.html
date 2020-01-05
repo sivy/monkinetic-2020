@@ -1,0 +1,10 @@
+{{ define "main" }}
+<h2>Archive {{ .Year }}/{{ .Month }}</h2>
+
+<ul>
+    {{ range .Posts }}
+    <li><a href="{{ .Url }}">{{ .Title }}</a></li>
+    {{ end }}
+</ul>
+
+{{ end }}

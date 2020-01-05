@@ -1,0 +1,8 @@
+{{ define "main" }}
+<h2>Archive</h2>
+<ul>
+    {{ range .ArchiveData}}
+    <li><a href="/archive/{{ .Year }}/{{ .Month }}">{{ .Year }}/{{ .Month }}</a> - {{ .Count }} posts</li>
+    {{ end }}
+</ul>
+{{ end }}
