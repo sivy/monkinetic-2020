@@ -1,0 +1,8 @@
+- name: "Enable HTTP/S on Firewall"
+  firewalld:
+    zone: public
+    service:
+      - http
+      - https
+    state: enabled
+    permanent: yes
