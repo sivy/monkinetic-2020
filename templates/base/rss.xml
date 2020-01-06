@@ -1,0 +1,24 @@
+{{ define "rss" }}
+
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ .Config.Blog.Title }}</title>
+    <link>{{ .Config.Blog.Url }}</link>
+    <description>{{ .Config.Blog.Meta.description }}</description>
+    <generator>Goldfrog</generator>
+    <lastBuildDate>{{ with index .Posts 0 }}{{ .PostDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}{{ end }}</lastBuildDate>
+
+    {{ range .Posts }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>http://monkinetic.blog{{ .Url }}</link>
+      <pubDate>{{ .PostDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>
+      <author>{{ $.Config.Blog.Author.Name }} ({{ $.Config.Blog.Author.Email }})</author>
+      <guid>{{ .Url }}</guid>
+      <description>{{ .Body | markdown | escape }}</description>
+    </item>
+    {{ end }}
+  </channel>
+</rss>
+
+{{ end }}
