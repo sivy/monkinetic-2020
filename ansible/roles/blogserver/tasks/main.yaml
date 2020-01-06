@@ -15,13 +15,13 @@
 - name: Download goldfrogd from S3 bucket
   get_url:
     url: "{{ goldfrog_dist }}"
-    dest: /root/goldfrogd.tgz
+    dest: /root/goldfrog-latest.tgz
     force: true
 
 - name: Unarchive goldfrogd
   become: yes
   unarchive:
-    src: goldfrogd.tgz
+    src: goldfrog-latest.tgz
     dest: /root
     remote_src: true
 
