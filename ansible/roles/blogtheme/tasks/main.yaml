@@ -6,6 +6,7 @@
   git:
     repo: "{{ project_repo }}"
     dest: "{{ project_location }}"
+    accept_hostkey: yes
     update: yes
 
 - name: Create Goldfrog Config
@@ -13,7 +14,8 @@
     src: config.yaml.j2
     dest: "{{ blog_home }}/config.yaml"
 
-- name: Index files
-  command: "/usr/bin/goldfrog-indexer"
-  environment:
-    BLOGHOME: "{{ blog_home }}"
+- name: Start or Restart Goldfrog service
+  service:
+      name: goldfrogd
+      enabled: yes
+      state: restarted

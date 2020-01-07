@@ -12,6 +12,12 @@
     groups: '{{app_group}},users'
     shell: /bin/bash
 
+- name: Create /var/goldfrog
+  file:
+    path: /var/goldfrog
+    mode: ug+rw,o+r
+    state: directory
+
 - name: Download goldfrogd from S3 bucket
   get_url:
     url: "{{ goldfrog_dist }}"
@@ -31,6 +37,7 @@
     src: dist/goldfrogd
     dest: /usr/bin
     remote_src: yes
+    force: yes
 
 - name: Set goldfrogd perms
   become: yes
@@ -56,8 +63,12 @@
     src: goldfrog.service.j2
     dest: /etc/systemd/system/goldfrogd.service
 
-- name: Start Goldfrog service, if not started
+- name: Reload systemd
+  systemd:
+    daemon_reload: yes
+
+- name: Start or Restart Goldfrog service
   service:
     name: goldfrogd
     enabled: yes
-    state: started
+    state: restarted

@@ -2,8 +2,8 @@
 Description=Goldfrog Blog Server
 
 [Service]
-Environment="BLOGHOME={{ blog_home }}"
-ExecStart=/usr/bin/goldfrogd
+Environment="BLOGHOME={{ project_location }}"
+ExecStart=/usr/bin/goldfrogd --posts_dir {{ blog_posts }} --uploads_dir {{ blog_uploads }} --static_dir {{project_location}}/static
 
 [Install]
 WantedBy=multi-user.target

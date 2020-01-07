@@ -7,18 +7,25 @@
     - base
     - nginxinc.nginx
     - blogserver
-    # - blogcontent
+    - blogtheme
 
   vars:
     goldfrog_dist: "https://goldfrog-releases.s3-us-west-1.amazonaws.com/goldfrog-latest.tgz"
     project_repo: https://github.com/sivy/monkinetic-2020.git
-    project_location: /var/goldfrog
+    # project_location should be a SUBDIR of /var/goldfrog
+    project_location: /var/goldfrog/monkinetic
+    content_location: /var/goldfrog/monkinetic-content
+    content_repo: https://github.com/sivy/monkinetic-content.git
 
+    blog_home: "{{ project_location }}"
+    blog_posts: "{{ content_location}}/posts"
+    blog_uploads: "{{ content_location}}/uploads"
     blog_auth_user: "{{ lookup('env','BLOG_AUTH_USER') }}"
     blog_auth_password: "{{ lookup('env','BLOG_AUTH_PWD') }}"
     blog_home: "{{ project_location }}"
     blog_server_location: "127.0.0.1"
     blog_server_port: "8080"
+    blog_url: "http://173.255.215.158"
 
     nginx_http_template_enable: true
     nginx_http_template:

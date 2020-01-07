@@ -8,13 +8,20 @@
 
   vars:
     project_repo: https://github.com/sivy/monkinetic-2020.git
-    project_location: /var/goldfrog
+    project_location: /var/goldfrog/monkinetic
+
+    content_repo: git@github.com:sivy/monkinetic-content.git
+    content_location: /var/goldfrog/monkinetic-content
+    blog_posts: "{{ content_location}}/posts"
+    blog_templates: "{{ project_location }}/templates"
+    blog_uploads: "{{ content_location}}/uploads"
 
     blog_auth_user: "{{ lookup('env','BLOG_AUTH_USER') }}"
     blog_auth_password: "{{ lookup('env','BLOG_AUTH_PWD') }}"
     blog_home: "{{ project_location }}"
     blog_server_location: "127.0.0.1"
     blog_server_port: "8080"
+    blog_url: "http://173.255.215.158"
 
     nginx_http_template_enable: true
     nginx_http_template:
