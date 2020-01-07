@@ -1,12 +1,15 @@
 {{ define "main" }}
+
 <article>
     <h2>{{ .Post.Title }}</h2>
     <p class="meta">
-        Published on {{ .Post.PostDate.Format "Jan 02, 2006" }}{{ if .IsOwner }} - <a
-            href="/edit/{{ .Post.ID }}">Edit</a>{{ end }}
+        Published on {{ .Post.PostDate.Format "Jan 02, 2006" }}{{ if .Post.Tags }} -
+        {{ range .Post.Tags }}<a href="/tag/{{ . }} ">{{ . }}</a> {{ end }}
+        {{ end }}{{ if $.IsOwner }}
+        - <a href="/edit/{{ .Post.ID }}">Edit</a>{{ end }}
     </p>
     <div>
-        {{ .Post.Body | markdown }}
+        {{ .Post.Body | markdown | hashtags }}
     </div>
 </article>
 {{ end }}
