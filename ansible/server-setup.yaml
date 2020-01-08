@@ -20,12 +20,17 @@
     blog_home: "{{ project_location }}"
     blog_posts: "{{ content_location}}/posts"
     blog_uploads: "{{ content_location}}/uploads"
+
     blog_auth_user: "{{ lookup('env','BLOG_AUTH_USER') }}"
     blog_auth_password: "{{ lookup('env','BLOG_AUTH_PWD') }}"
-    blog_home: "{{ project_location }}"
     blog_server_location: "127.0.0.1"
     blog_server_port: "8080"
     blog_url: "http://173.255.215.158"
+
+    twitter_client_key: "{{ lookup('env','TWITTER_CLIENT_KEY') }}"
+    twitter_client_secret: "{{ lookup('env','TWITTER_CLIENT_SECRET') }}"
+    twitter_access_key: "{{ lookup('env','TWITTER_ACCESS_KEY') }}"
+    twitter_access_secret: "{{ lookup('env','TWITTER_ACCESS_SECRET') }}"
 
     nginx_http_template_enable: true
     nginx_http_template:

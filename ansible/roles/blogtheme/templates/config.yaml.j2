@@ -1,16 +1,16 @@
 blog:
-    title: monkinetic.blog
-    subhead: Since 1999, XVI Edition
-    url: "{{ blog_url }}"
-    author:
-        name: Steve Ivy
-        email: steveivy@gmail.com
-    meta:
-        footer_text: "&copy; Copyright 1999-2019, Steve Ivy"
-        description: >
-            The weblog of Steve Ivy, going since 1999 in one form or another. Still something of a CMS junkie.
+  title: monkinetic.blog
+  subhead: Since 1999, XVI Edition
+  url: "{{ blog_url }}"
+  author:
+    name: Steve Ivy
+    email: steveivy@gmail.com
+  meta:
+    footer_text: "&copy; Copyright 1999-2019, Steve Ivy"
+    description: >
+      The weblog of Steve Ivy, going since 1999 in one form or another. Still something of a CMS junkie.
 
-            XVI Edition.
+      XVI Edition.
 
 postsdir: "{{ blog_posts | default(content_location + "/posts") }}"
 uploadsdir: "{{ blog_uploads | default(content_location + "/uploads")  }}"
@@ -38,3 +38,9 @@ signin:
 server:
     location: "{{ blog_server_location }}"
     port: "{{ blog_server_port }}"
+
+twitter:
+  clientkey: "{{ twitter_client_key}}"
+  clientsecret: "{{ twitter_client_secret }}"
+  accesskey: "{{ twitter_access_key}}"
+  accesssecret: "{{ twitter_access_secret }}"
