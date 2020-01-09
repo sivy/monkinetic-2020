@@ -1,19 +1,30 @@
 {{ define "icons" }}
-<li>
-	<i class="fa fa-fw fa-rss"></i>
-	<a href="/feed.xml" title="Subscribe">RSS Feed</a>
-</li>
+<nav>
+	<h4>Follow Me On:</h4>
+	<ul>
+		{{ range .Config.Services }}
+		<li>
+			{{  if .Class }}<i class="fa fa-fw {{ .Class}}"></i>{{  else  }}<img src="{{ .Icon }}"
+				style="width:16px">{{  end  }}
 
-{{ range $service := .Config.Services }}
-<li>
-	<a href="{{ $service.link }}" rel="me nofollow" title="Follow me on {{ $service.name }}">
-		{{  if $service.class }}
-		<i class="fa fa-fw {{ $service.class}}"></i>
-		{{  else  }}
-		<img src="{{ $service.icon }}" style="width:16px">
-		{{  end  }} $service.name
-	</a>
-</li>
-{{ end }}
+			<a href="{{ .Link }}" rel="me nofollow" target="_new" title="Follow me on {{ .Name }}">{{ .Name }}</a>
+		</li>
+		{{ end }}
+	</ul>
+</nav>
+
+<nav>
+	<h4>Reading:</h4>
+	<ul>
+		{{ range .Config.Links }}
+		<li>
+			{{  if .Class }}<i class="fa fa-fw {{ .Class}}"></i>{{  else  }}<img src="{{ .Icon }}"
+				style="width:16px">{{  end  }}
+
+			<a href="{{ .Link }}" rel="me nofollow" target="_new" title="Follow me on {{ .Name }}">{{ .Name }}</a>
+		</li>
+		{{ end }}
+	</ul>
+</nav>
 
 {{ end }}

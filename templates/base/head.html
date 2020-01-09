@@ -1,3 +1,34 @@
 {{ define "head" }}
+<title>{{ block "title" $ }}monkinetic.blog{{ end }}</title>
+<meta charset="utf-8">
+<!-- CSS -->
+<link href="https://fonts.googleapis.com/css?family=Montserrat:regular,bold&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/styles.css">
 
+<meta name="description" content="{{ .Config.Blog.Meta.description | replace "\n" }}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-Frame-Options" content="sameorigin">
+
+<!--Favicon-->
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+
+<!-- webmention -->
+<link rel="pingback" href="https://webmention.io/monkinetic.blog/xmlrpc" />
+<link rel="webmention" href="https://webmention.io/monkinetic.blog/webmention" />
+
+<!-- RSS -->
+<link rel="alternate" type="application/atom+xml" title="{{ .Config.Blog.Title }}" href="/feed.xml" />
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css">
+
+<meta name="twitter:site" content="{{ .Config.Blog.Meta.twitter_id }}">
+<meta name="twitter:creator" content="{{ .Config.Blog.Meta.twitter_id }}">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="/static/images/monkinetic_card_image.png">
+{{ block "twittercard" . }}
+<!-- DEFAULTS -->
+<meta name="twitter:title" content="{{ .Config.Blog.Title }}">
+<meta name="twitter:description" content='{{ .Config.Blog.Meta.description | replace "\n" }}'>
+{{ end }}
 {{ end }}

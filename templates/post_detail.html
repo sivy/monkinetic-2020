@@ -1,11 +1,9 @@
 {{ define "title" }}monkinetic.blog: {{ .Post.Title }}{{ end }}
 
 {{ define "twittercard" }}
-<!-- HO THERE -->
 <meta name="twitter:title" content="{{ .Post.Title }}">
 <meta name="twitter:description" content='{{ .Post.Body | markdown | striphtml | replace "\n" | truncatechars 200 }}'>
 {{ end }}
-
 
 {{ define "main" }}
 <article>

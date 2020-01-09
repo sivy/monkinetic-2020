@@ -2,33 +2,7 @@
 <!DOCTYPE html>
 
 <head>
-  <title>{{ block "title" . }}monkinetic.blog{{ end }}</title>
-  <meta charset="utf-8">
-  <!-- CSS -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:regular,bold&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/static/styles.css">
-
-  <meta name="description" content="{{ .Config.Blog.Meta.description | replace "\n" }}">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="X-Frame-Options" content="sameorigin">
-
-  <!--Favicon-->
-  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-
-  <!-- webmention -->
-  <link rel="pingback" href="https://webmention.io/monkinetic.blog/xmlrpc" />
-  <link rel="webmention" href="https://webmention.io/monkinetic.blog/webmention" />
-
-  <!-- RSS -->
-  <link rel="alternate" type="application/atom+xml" title="{{ .Config.Blog.Title }}" href="/feed.xml" />
-
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css">
-
-  <meta name="twitter:site" content="{{ .Config.Blog.Meta.twitter_id }}">
-  <meta name="twitter:creator" content="{{ .Config.Blog.Meta.twitter_id }}">
-  <meta name="twitter:card" content="summary">
-  {{ template "twittercard" . }}
+  {{ template "head" . }}
 </head>
 
 <body>
@@ -39,22 +13,31 @@
       <span class="main"><a href="/">monkinetic</a></span>
       <span class="subhead">the blog</span>
     </h1>
-    <p class="byline">{{ .Config.Blog.Meta.description | markdown }}</p>
+    <p class="byline">{{ .Config.Blog.Meta.description | markdown }}
 
-    <nav>
-      <ul class="nav navbar-nav">
-        <li><a href="/about">About This Site</a></li>
-        <li><a href="/archive">Archive</a></li>
-        {{ template "icons" }}
-      </ul>
-    </nav>
+      <nav>
+        <ul class="nav navbar-nav">
+          <li><a href="/about">About This Site</a></li>
+          <li><a href="/archive">Archive</a></li>
+          <li>
+            <i class="fa fa-fw fa-rss"></i>
+            <a href="/feed.xml" title="Subscribe to monkinetic.blog">Subscribe</a>
+          </li>
+        </ul>
+      </nav>
 
-    <form action="/search" method="GET">
-      <div class="form-section">
-        <input type="text" name="s" placeholder="Search...">
-      </div>
-      <input type="submit" value="Go">
-    </form>
+      {{ template "icons" . }}
+
+      <nav>
+        <h4>Search This Site:</h4>
+
+        <form action="/search" method="GET">
+          <div class="form-section">
+            <input type="text" name="s" placeholder="Search...">
+          </div>
+          <input type="submit" value="Go">
+        </form>
+      </nav>
   </div>
 
   <div class="page">
@@ -65,10 +48,4 @@
 </body>
 
 </html>
-{{ end }}
-
-{{ define "twittercard" }}
-<!-- HO THERE -->
-<meta name="twitter:title" content="{{ .Config.Blog.Title }}">
-<meta name="twitter:description" content='{{ .Config.Blog.Meta.description | replace "\n" }}'>
 {{ end }}
