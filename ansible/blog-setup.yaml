@@ -23,6 +23,10 @@
     twitter_access_key: "{{ lookup('env','TWITTER_ACCESS_KEY') }}"
     twitter_access_secret: "{{ lookup('env','TWITTER_ACCESS_SECRET') }}"
 
+    mastodon_client_id: "{{ lookup('env','MASTODON_CLIENT_ID') }}"
+    mastodon_client_secret: "{{ lookup('env','MASTODON_CLIENT_SECRET') }}"
+    mastodon_access_token: "{{ lookup('env','MASTODON_ACCESS_TOKEN') }}"
+
     blog_home: "{{ project_location }}"
     blog_server_location: "127.0.0.1"
     blog_server_port: "8080"
