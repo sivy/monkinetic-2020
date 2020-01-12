@@ -4,7 +4,9 @@
 
 {{ range .Posts }}
 <article>
-  <h2><a href="{{ .Url }}"><span class="title-hash" style="font-weight: normal">#</span> {{ .Title }}</a></h2>
+  <h2><a href="{{ .Url }}">{{ .Title }}</a> <a href="{{ .Url }}"><span class="title-hash"
+        style="font-weight: normal">#</span></a>
+  </h2>
   <p class="meta">
     Published on {{ .PostDate.Format "Jan 02, 2006" }}{{ if .Tags }} -
     {{ range .Tags }}<a href="/tag/{{ . }} ">{{ . }}</a> {{ end }}

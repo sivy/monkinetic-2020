@@ -28,11 +28,11 @@
     </form>
 
     <form id="deleteform" action="/delete" method="POST">
+        <input type="hidden" value="{{ .Post.ID }}" name="postID" />
         <div class="form-section danger">
-            <h2>Delete this Post</h2>
+            <h2>Delete this Post <button id="delete"
+                    onclick="return window.confirm('Delete post {{ .Post.Title }}?');">Delete Post</button></h2>
             <p>This cannot be undone!</p>
-            <input type="hidden" value="{{ .Post.ID }}" name="postID" />
-            <button id="delete" onclick="return window.confirm('Delete post {{ .Post.Title }}?');">Delete Post</button>
         </div>
     </form>
 </div>
