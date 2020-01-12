@@ -25,7 +25,7 @@
     blog_auth_password: "{{ lookup('env','BLOG_AUTH_PWD') }}"
     blog_server_location: "127.0.0.1"
     blog_server_port: "8080"
-    blog_url: "http://beta.monkinetic.blog"
+    blog_url: "http://monkinetic.blog"
 
     twitter_client_key: "{{ lookup('env','TWITTER_CLIENT_KEY') }}"
     twitter_client_secret: "{{ lookup('env','TWITTER_CLIENT_SECRET') }}"
@@ -50,6 +50,10 @@
                 port: 80
                 opts:
                   - default_server
+
+            # ssl_certificate: /etc/letsencrypt/live/example.com/fullchain.pem
+            # ssl_certificate_key: /etc/letsencrypt/live/example.com/privkey.pem
+
             server_name: "173.255.215.158 monkinetic.blog www.monkinetic.blog"
             error_page: /usr/share/nginx/html
             autoindex: false

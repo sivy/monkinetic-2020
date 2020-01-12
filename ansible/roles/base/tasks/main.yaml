@@ -11,4 +11,6 @@
       - git
       - unzip
       - tar
+      - fail2ban
     #   - daemonize
+
