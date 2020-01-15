@@ -176,7 +176,7 @@ img {
 
 .postform input[type=text] {
     width: 97%;
-    padding: 2% 1%;
+    padding: 3px;
     font-size: 101%;
 }
 
@@ -204,4 +204,12 @@ img {
 
 article {
     margin-top: 50px;
+}
+
+article h2 {
+    margin: 20px 0 8px;
+}
+
+body.pagebody .page {
+    width: 96%;
 }
