@@ -1,0 +1,24 @@
+{{ define "pagebase" }}
+<!DOCTYPE html>
+
+<head>
+  {{ template "head" . }}
+</head>
+
+<body class="pagebody">
+  {{ template "header" . }}
+
+  <h1 id="title">
+    <span class="main"><a href="/">monkinetic</a></span>
+    <span class="subhead">the blog</span>
+  </h1>
+
+  <div class="page">
+    {{ template "main" . }}
+  </div>
+
+  {{ template "footer" }}
+</body>
+
+</html>
+{{ end }}
