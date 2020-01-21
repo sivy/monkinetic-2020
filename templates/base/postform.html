@@ -1,6 +1,4 @@
 {{ define "postform" }}
-
-{{ if .IsOwner }}
 <div class="postform new" style="padding: 0 1em 1em; border: 1px solid #ddd">
     <h2>New Post</h2>
     <form enctype="multipart/form-data" id="postform" action="{{ .FormAction }}" method="POST">
@@ -14,12 +12,10 @@
             <input type="text" name="slug" placeholder="Leave blank to auto-generate from title" />
         </div>
         {{ end }}
-        {{ if not .ShowExpand }}
         <div class="form-section">
             <label for="tags">Tags</label>
             <input type="text" name="tags" placeholder="Post Tags" />
         </div>
-        {{ end }}
         <div class="form-section">
             <label>Add Image <input type="file" name="postimage" /></label>
         </div>
@@ -28,12 +24,11 @@
             <textarea name="body" rows="{{ .TextHeight | default 10 }}" placeholder="Post content"></textarea>
         </div>
         <div class="form-section">
-            Cross-post:
+            Syndicate:
             <input type="checkbox" name="twitter" value="on"> Twitter
             <input type="checkbox" name="mastodon" value="on"> Toot.cafe
         </div>
-        <button>Post</button> {{ if .ShowExpand }}<a href="/new">Expanded Form</a> (Resets form){{ end }}
+        <button>Publish</button>
     </form>
 </div>
-{{ end }}
 {{ end }}

@@ -1,20 +1,11 @@
 {{ define "main" }}
 <h2>Daily Digest for {{ .Date.Format "Monday, Jan 2, 2006" }}</h2>
 {{ range .Posts }}
-<article>
-  <h2><a href="{{ .Url }}"></a>{{ .Title }}</a> <a href="{{ .Url }}"><span class="title-hash"
-        style="font-weight: normal">#</span></a></h2>
-  <p class="meta">
-    Published on {{ .PostDate.Format "Jan 02, 2006" }}{{ if .Tags }} -
-    {{ range .Tags }}<a href="/tag/{{ . }} ">{{ . }}</a> {{ end }}
-    {{ end }}{{ if $.IsOwner }}
-    - <a href="/edit/{{ .ID }}">Edit</a>{{ end }}
-  </p>
-  <div>
-    {{ .Body | markdown | hashtags }}
-  </div>
-
-</article>
+{{ if .Title }}
+{{ template "postcontent" . }}
+{{ else }}
+{{ template "notecontent" . }}
+{{ end }}
 {{ end }}
 
 {{ end }}

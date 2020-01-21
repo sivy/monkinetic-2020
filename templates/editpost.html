@@ -24,6 +24,11 @@
             <textarea name="body" rows="{{ .TextHeight | default 10 }}"
                 placeholder="Post content">{{ .Post.Body }}</textarea>
         </div>
+        <div class="form-section">
+            Cross-post:
+            <input type="checkbox" name="twitter" value="on"> Twitter
+            <input type="checkbox" name="mastodon" value="on"> Toot.cafe
+        </div>
         <button>Save Post</button>
     </form>
 

@@ -1,0 +1,17 @@
+{{ define "noteform" }}
+<div class="postform new" style="padding: 0 1em 1em; border: 1px solid #ddd">
+    <h2>New Note</h2>
+    <form enctype="multipart/form-data" id="postform" action="{{ .FormAction }}" method="POST">
+        <div class="form-section">
+            <textarea name="body" rows="{{ .TextHeight | default 5 }}" placeholder="Short note here :)"></textarea>
+            <label for="tags">(basic markdown supported)</label>
+        </div>
+        <div class="form-section">
+            Syndicate:
+            <input type="checkbox" name="twitter" value="on" checked="checked"> Twitter
+            <input type="checkbox" name="mastodon" value="on" checked="checked"> Toot.cafe
+        </div>
+        <button>Post Note</button> <a href="/new">Post Form</a>
+    </form>
+</div>
+{{ end }}

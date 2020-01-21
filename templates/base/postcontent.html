@@ -1,12 +1,13 @@
 {{ define "postcontent" }}
-<article>
-    <h2><a href="{{ .Slug }}"><span class="title-hash" style="font-weight: normal">#</span> {{ .Title }}</a></h2>
-    <p class="meta">
-        Published on {{ .PostDate.Format "Jan 02, 2006" }}{{ if .IsOwner }} - <a
-            href="/edit/{{ .ID }}">Edit</a>{{ end }}
+<article id="{{ .Slug }}">
+    <h2><a href="{{ .Slug }}">{{ .Title }}</a> <span class="title-hash" style="font-weight: normal"><a
+                href="{{ .Slug }}">#</a></span> </h2>
+    <p class="post-meta">
+        {{ template "postmeta" . }}
     </p>
     <div>
         {{ .Body | markdown }}
     </div>
+    {{ if .Tags }}<p>{{ range .Tags }} <a href="/tag/{{ . }} ">#{{ . }}</a>{{ end }}</p>{{ end }}
 </article>
 {{ end }}
