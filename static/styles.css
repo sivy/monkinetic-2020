@@ -224,6 +224,7 @@ body.pagebody .page {
 
 .note p {
     margin-bottom: 0;
+    margin-left: 58px;
 }
 .note .meta {
     font-size: 90%;
