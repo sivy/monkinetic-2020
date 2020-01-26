@@ -8,7 +8,8 @@
                     class="dt-published">{{ .PostDate.Format "2006-01-02" }}</time></span></a></span>
 
     <div class="e-content p-name">
-        {{ .Body | markdown }}
+        {{ .Body | markdown |
+         hashtags}}
     </div>
 </div>
 {{ end }}
