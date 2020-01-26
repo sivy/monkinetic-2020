@@ -1,11 +1,11 @@
 {{ define "postcontent" }}
 <article id="{{ .Slug }}">
-    <h2><a href="{{ .Permalink }}">{{ .Title }}</a> <span class="title-hash" style="font-weight: normal"><a
-                href="{{ .Permalink }}">#</a></span> </h2>
+    <h2 class="p-name"><a href="{{ .Permalink }}">{{ .Title }}</a> <span class="title-hash"
+            style="font-weight: normal"><a href="{{ .Permalink }}">#</a></span> </h2>
     <p class="post-meta">
         {{ template "postmeta" . }}
     </p>
-    <div>
+    <div class="e-content">
         {{ .Body | markdown }}
     </div>
     {{ if .Tags }}<p>{{ range .Tags }} <a href="/tag/{{ . }} ">#{{ . }}</a>{{ end }}</p>{{ end }}

@@ -3,9 +3,11 @@
 
 <ul>
     {{ range .Posts }}
-    <li><a href="{{ .Url }}">{{ .Title }}</a> - {{ .PostDate.Format "Jan 02, 2006" }} {{ if .Tags }} -
+    {{ if .Title }}
+    <li><a href="{{ .PermaLink }}">{{ .Title }}</a> - {{ .PostDate.Format "Jan 02, 2006" }} {{ if .Tags }} -
         {{ range .Tags }}<a href="/tag/{{ . }} ">{{ . }}</a> {{ end }}
         {{ end }}</li>
+    {{ end }}
     {{ end }}
 </ul>
 
