@@ -2,12 +2,12 @@
 <div class="note h-entry" id="{{ .Slug }}">
     <span class="meta h-card">
         <img class="note_avatar u-photo" src="{{ .User.Image }}">
-        <a class="u-author p-name" href="{{ .User.Url }}">{{ .User.DisplayName }}</a>
-        <a class="timestamp" href='{{ .PostDate.Format "/2006/01/02/" }}#{{ .Slug }}'><span class="title-hash"
+        <a class="u-author" href="{{ .User.Url }}">{{ .User.DisplayName }}</a>
+        <a class="timestamp u-url" href='{{ .PostDate.Format "/2006/01/02/" }}#{{ .Slug }}'><span class="title-hash"
                 style="font-weight: normal"># <time
                     class="dt-published">{{ .PostDate.Format "2006-01-02" }}</time></span></a></span>
 
-    <div class="e-content">
+    <div class="e-content p-name">
         {{ .Body | markdown }}
     </div>
 </div>

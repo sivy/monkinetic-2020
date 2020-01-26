@@ -6,12 +6,12 @@
 {{ end }}
 
 {{ define "main" }}
-<article>
-    <h2>{{ .Post.Title }}</h2>
+<article class="h-entry">
+    <h2 class="p-name">{{ .Post.Title }}</h2>
     <p class="post-meta">
         {{ template "postmeta" .Post }}
     </p>
-    <div>
+    <div class="e-content">
         {{ .Post.Body | markdown | hashtags }}
     </div>
 </article>
