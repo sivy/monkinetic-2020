@@ -6,8 +6,8 @@
         {{ template "postmeta" . }}
     </p>
     <div class="e-content">
-        {{ .Body | markdown }}
+        {{ .Body | markdown | hashtags }}
     </div>
-    {{ if .Tags }}<p>{{ range .Tags }} <a href="/tag/{{ . }} ">#{{ . }}</a>{{ end }}</p>{{ end }}
+    {{ if .Tags }}<p>{{ range .Tags }} <a class="p-category" href="/tag/{{ . }} ">#{{ . }}</a>{{ end }}</p>{{ end }}
 </article>
 {{ end }}

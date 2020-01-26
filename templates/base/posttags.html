@@ -1,0 +1,3 @@
+{{ define "posttags" }}
+{{ if .Tags }}<p>{{ range .Tags }} <a class="p-category" href="/tag/{{ . }} ">#{{ . }}</a>{{ end }}</p>{{ end }}
+{{ end }}
