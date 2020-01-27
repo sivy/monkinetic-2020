@@ -2,7 +2,7 @@
 Published on <a title='Daily Digest for {{ .PostDate.Format "Jan 02, 2006"}}'
     href='{{ .PostDate.Format "/2006/01/02/"}}'><time class="dt-published"
         datetime='{{ .PostDate.Format "2006-01-02 03:04:05" }}'>{{ .PostDate.Format "Jan 02, 2006" }}</time></a> at
-{{ .PostDate.Format "03:04"}} by <a rel="author" class="u-author u-url"
-    href="{{ .User.Url }}">{{ .User.DisplayName }}</a> <a class="u-url" href="{{ .PermaLink }}">#permalink</a>
+{{ .PostDate.Format "03:04"}} by <a rel="author" class="u-author" href="{{ .User.Url }}">{{ .User.DisplayName }}</a> <a
+    class="u-url" href="{{ .PermaLink }}">#permalink</a>
 {{ if .User.IsAdmin }} <a href="/edit/{{ .ID }}"><i class="fa fa-pencil"></i></a>{{ end }}
 {{ end }}
