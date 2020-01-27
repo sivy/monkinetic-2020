@@ -241,3 +241,11 @@ body.pagebody .page {
 .note .timestamp {
     float: right;
 }
+
+.flash {
+    padding: 12px 8px;
+    color: #fff;
+    background-color: #F95D5C;
+    border-bottom: 2px solid #fff;
+    margin-bottom: 20px;
+}

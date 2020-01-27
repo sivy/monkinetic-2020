@@ -14,7 +14,7 @@
         </div>
         <div class="form-section">
             <label for="tags">Tags</label>
-            <input type="text" name="tags" placeholder="Post Tags" value="{{ .Post.Tags | join ", " }}" />
+            <input type="text" name="tags" placeholder="Post Tags" value='{{ .Post.Tags | join ", " }}' />
         </div>
         <div class="form-section">
             <label>Add Image <input type="file" name="postimage" /></label>
@@ -36,7 +36,7 @@
         <input type="hidden" value="{{ .Post.ID }}" name="postID" />
         <div class="form-section danger">
             <h2>Delete this Post <button id="delete"
-                    onclick="return window.confirm('Delete post {{ .Post.Title }}?');">Delete Post</button></h2>
+                    onclick="return window.confirm(' Delete post {{ .Post.Title }}?');">Delete Post</button></h2>
             <p>This cannot be undone!</p>
         </div>
     </form>

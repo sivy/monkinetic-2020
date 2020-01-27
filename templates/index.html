@@ -1,5 +1,6 @@
 {{ define "main" }}
 
+
 {{ if .IsOwner }}{{ template "noteform" . }}{{ end }}
 
 {{ range .Posts }}
