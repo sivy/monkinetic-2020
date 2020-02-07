@@ -254,12 +254,14 @@ body.pagebody .page {
     margin-bottom: 20px;
 }
 
+.note .syndication {
+    margin-left: 58px;
+}
+
 .syndication {
     font-size: 80%;
     list-style-type: none;
     padding-left: 0px;
-    margin-left: 58px;
-
 }
 
 .syndication li {
