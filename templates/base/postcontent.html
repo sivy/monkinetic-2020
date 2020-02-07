@@ -8,6 +8,15 @@
     <div class="e-content">
         {{ .Body | markdown | hashtags }}
     </div>
+    <div class="syndication">
+        {{ .FrontMatter.twitter_id }}
+        {{ if .FrontMatter.twitter_id }}<a target='_new' title='View on Mastodon'
+            href='{{ tweetlink .Config .FrontMatter.twitter_id }}'><i class='fab fa-mastodon'></i></a>{{ end }}
+        {{ if .FrontMatter.mastodon_id }}<a target='_new' title='View on Mastodon'
+            href='{{ tootlink .Config .FrontMatter.mastodon_id }}'><i class='fab fa-mastodon'></i></a>{{ end }}
+    </div>
     {{ if .Tags }}<p>{{ range .Tags }} <a class="p-category" href="/tag/{{ . }} ">#{{ . }}</a>{{ end }}</p>{{ end }}
+    {{ template "syndication" . }}
+
 </article>
 {{ end }}

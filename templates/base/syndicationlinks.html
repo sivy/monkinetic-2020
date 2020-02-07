@@ -1,0 +1,26 @@
+{{ define "syndication" }}
+{{ if or .FrontMatter.mastodon_url .FrontMatter.twitter_url}}
+<ul class="syndication">
+    {{ if .FrontMatter.twitter_url }}
+    <li><a target='_new' title='View on Twitter' href='{{ .FrontMatter.twitter_url }}'><i class='fab fa-twitter'></i>
+            Also on Twitter</a> {{ if .FrontMatter.twitter_id }} <span class="syndication-links">
+            <indie-action do="reply" with="{{ .PermaLink }}">
+                <a href="https://twitter.com/intent/tweet?in_reply_to={{ .FrontMatter.twitter_id }}"><i
+                        class="fas fa-reply"></i></a>
+            </indie-action>
+            <indie-action do="repost" with="{{ .PermaLink }}">
+                <a href="https://twitter.com/intent/retweet?tweet_id={{ .FrontMatter.twitter_id }}"><i
+                        class="fas fa-retweet"></i></a>
+            </indie-action>
+            <indie-action do="like" with="{{ .PermaLink }}">
+                <a href="https://twitter.com/intent/favorite?tweet_id={{ .FrontMatter.twitter_id }}"><i
+                        class="fas fa-star"></i></a>
+            </indie-action>
+        </span>{{ end }}
+    </li>{{ end }}
+    {{ if .FrontMatter.mastodon_url }}<li><a target='_new' title='View on Mastodon'
+            href='{{ .FrontMatter.mastodon_url }}'><i class='fab fa-mastodon'></i> Also on Mastodon</a>
+    </li>{{ end }}
+</ul>
+{{ end }}
+{{ end }}

@@ -4,7 +4,7 @@
 	<ul>
 		{{ range .Config.Services }}
 		<li>
-			{{  if .Class }}<i class="fa fa-fw {{ .Class}}"></i>{{  else  }}<img src="{{ .Icon }}"
+			{{  if .Class }}<i class="fab fa-fw {{ .Class}}"></i>{{  else  }}<img src="{{ .Icon }}"
 				style="width:16px">{{  end  }}
 
 			<a href="{{ .Link }}" rel="me nofollow" target="_new" title="Follow me on {{ .Name }}">{{ .Name }}</a>
@@ -18,7 +18,7 @@
 	<ul>
 		{{ range .Config.Links }}
 		<li>
-			{{  if .Class }}<i class="fa fa-fw {{ .Class}}"></i>{{  else  }}<img src="{{ .Icon }}"
+			{{  if .Class }}<i class="fab fa-fw {{ .Class}}"></i>{{  else  }}<img src="{{ .Icon }}"
 				style="width:16px">{{  end  }}
 
 			<a href="{{ .Link }}" target="_new" title="{{ .Name }}">{{ .Name }}</a>

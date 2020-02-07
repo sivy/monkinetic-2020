@@ -242,10 +242,30 @@ body.pagebody .page {
     float: right;
 }
 
+/* .note .e-content, .note .syndication {
+    margin-left: 54px;
+} */
+
 .flash {
     padding: 12px 8px;
     color: #fff;
     background-color: #F95D5C;
     border-bottom: 2px solid #fff;
     margin-bottom: 20px;
+}
+
+.syndication {
+    font-size: 80%;
+    list-style-type: none;
+    padding-left: 0px;
+    margin-left: 58px;
+
+}
+
+.syndication a {
+    text-decoration: none;
+}
+
+.syndication i {
+    color: #fff;
 }
