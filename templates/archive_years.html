@@ -7,12 +7,17 @@
 </h2>
 <ul>
     {{ range .ArchiveData}}
-    <li style="width: 100%"><span style="display:inline-block; width: 10em"><a
-                href="/archive/{{ .Year }}/{{ .Month }}">{{ .Year }}/{{ .Month }}</a> - {{ .Count }}
-            posts</span>
-        <div class="post-bar"
-            style="min-width: 2px; width: {{ .Count }}px; background-color: white; display:inline-block; height: 5px;">
-        </div>
+    <li style="width: 100%"><span style="display:inline-block"><a
+                title="{{ .CountPosts }} posts, {{ .CountNotes }} notes"
+                href="/archive/{{ .Year }}/{{ .Month }}">{{ .Year }}/{{ .Month }}</a>
+            {{ if not (eq .CountPosts 0) }}<div class="post-bar" title="{{ .CountPosts }} posts"
+                style="min-width: 5px; width: {{ .CountPosts }}px; max-width: 300px; background-color:rgb(125, 188, 219); display:inline-block; height: 5px;">
+            </div>{{ end}}
+            {{ if not (eq .CountNotes 0) }}<div class="post-bar" title="{{ .CountNotes }} notes"
+                style="min-width: 5px; width: {{ .CountNotes }}px;  max-width: 300px;background-color: rgb(252, 196, 174	); display:inline-block; height: 5px;">
+            </div>{{ end }}
+        </span>
+
     </li>
     {{ end }}
 </ul>
