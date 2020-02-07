@@ -262,6 +262,11 @@ body.pagebody .page {
 
 }
 
+.syndication li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
 .syndication a {
     text-decoration: none;
 }
