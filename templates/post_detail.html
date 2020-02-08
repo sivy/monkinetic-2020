@@ -15,5 +15,6 @@
         {{ .Post.Body | markdown | hashtags }}
     </div>
     {{ template "posttags" .Post }}
+    {{ template "syndication" .Post }}
 </article>
 {{ end }}
