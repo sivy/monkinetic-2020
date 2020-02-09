@@ -216,10 +216,11 @@ body.pagebody .page {
 
 .note {
     margin-top: 50px;
-    border-top: 1px solid rgba(255, 255, 255, 0.6);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
-    /* background-color: rgba(255, 255, 255, 0.1); */
-    padding: 15px 5px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    /* border-bottom: 1px solid rgba(255, 255, 255, 0.3); */
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 15px 15px;
+    font-size: 95%;
 }
 
 .note p {
