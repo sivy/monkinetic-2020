@@ -12,16 +12,42 @@
     groups: '{{app_group}},users'
     shell: /bin/bash
 
+- name: App user ssh dir
+  become: yes
+  become_user: '{{ app_user }}'
+  file:
+    path: '/home/{{ app_user }}/.ssh'
+    owner: '{{app_user}}'
+    mode: ug+rw,o+r
+    state: directory
+
+- name: Setup app user private key
+  become: yes
+  become_user: '{{ app_user }}'
+  template:
+    src: ssh_private_key.j2
+    dest: "/home/{{ app_user }}/.ssh/id_rsa"
+
+# - name: Add my user to app group
+#   become: yes
+#   user:
+#     name: "sivy"
+#     state: present
+#     groups: '{{app_group}},users'
+
 - name: Create /var/goldfrog
   file:
     path: /var/goldfrog
+    owner: '{{app_user}}'
+    group: '{{app_group}}'
     mode: ug+rw,o+r
     state: directory
 
 - name: Download goldfrogd from S3 bucket
+  become: yes
   get_url:
     url: "{{ goldfrog_dist }}"
-    dest: /root/goldfrog-latest.tgz
+    dest: goldfrog-latest.tgz
     force: true
 
 - name: Unarchive goldfrogd
@@ -56,6 +82,19 @@
   become: yes
   file:
     path: /usr/bin/goldfrog-indexer
+    mode: u=rwx,g=rx,o=rx
+
+- name: Install persister
+  become: yes
+  copy:
+    src: dist/persister
+    dest: /usr/bin/goldfrog-persister
+    remote_src: yes
+
+- name: Set persister perms
+  become: yes
+  file:
+    path: /usr/bin/goldfrog-persister
     mode: u=rwx,g=rx,o=rx
 
 - name: Create goldfrogd service

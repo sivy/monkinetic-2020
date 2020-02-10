@@ -3,18 +3,6 @@
 
       connection: ssh
       gather_facts: true
-      vars:
-        project_location: /var/goldfrog/monkinetic
-        content_repo: https://github.com/sivy/monkinetic-2020-content.git
-        content_location: /var/goldfrog/monkinetic-content
-
-        blog_posts: "{{ content_location}}/posts"
-        blog_uploads: "{{ content_location}}/uploads"
-
-        blog_home: "{{ project_location }}"
-        blog_server_location: "127.0.0.1"
-        blog_server_port: "8080"
-        blog_url: "http://173.255.215.158"
 
       tasks:
         - name: Clone or Update blog content
@@ -28,3 +16,9 @@
           command: "/usr/bin/goldfrog-indexer --posts_dir {{ content_location }}/posts"
           environment:
               BLOGHOME: "{{ blog_home }}"
+
+        - name: Start or Restart Goldfrog service
+          service:
+            name: goldfrogd
+            enabled: yes
+            state: restarted

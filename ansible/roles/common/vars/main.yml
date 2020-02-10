@@ -1,0 +1,32 @@
+---
+ansible_ssh_user: root
+ansible_ssh_private_key_file: /Users/sivy/.ssh/id_rsa
+app_user: bloguser
+app_group: blog
+github_user: sivy
+app_user_private_key: "{{ lookup('env','BLOG_USER_PRIVATE_KEY') }}"
+
+# blog vars
+theme_repo: https://github.com/sivy/monkinetic-2020.git
+theme_location: /var/goldfrog/monkinetic
+content_location: /var/goldfrog/monkinetic-content
+content_repo: https://github.com/sivy/monkinetic-content.git
+
+blog_home: "{{ theme_location }}"
+blog_posts: "{{ content_location}}/posts"
+blog_uploads: "{{ content_location}}/uploads"
+
+blog_auth_user: "{{ lookup('env','BLOG_AUTH_USER') }}"
+blog_auth_password: "{{ lookup('env','BLOG_AUTH_PWD') }}"
+blog_server_location: "127.0.0.1"
+blog_server_port: "8080"
+blog_url: "http://monkinetic.blog"
+
+twitter_client_key: "{{ lookup('env','TWITTER_CLIENT_KEY') }}"
+twitter_client_secret: "{{ lookup('env','TWITTER_CLIENT_SECRET') }}"
+twitter_access_key: "{{ lookup('env','TWITTER_ACCESS_KEY') }}"
+twitter_access_secret: "{{ lookup('env','TWITTER_ACCESS_SECRET') }}"
+
+mastodon_client_id: "{{ lookup('env','MASTODON_CLIENT_ID') }}"
+mastodon_client_secret: "{{ lookup('env','MASTODON_CLIENT_SECRET') }}"
+mastodon_access_token: "{{ lookup('env','MASTODON_ACCESS_TOKEN') }}"

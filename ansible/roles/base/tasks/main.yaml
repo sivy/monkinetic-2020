@@ -12,5 +12,5 @@
       - unzip
       - tar
       - fail2ban
-    #   - daemonize
+      - sqlite
 

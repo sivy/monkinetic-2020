@@ -5,6 +5,7 @@ blog:
   author:
     name: Steve Ivy
     email: steveivy@gmail.com
+    image: "http://monkinetic.blog/static/images/sivy_avatar_256.png"
   meta:
     footer_text: "&copy; Copyright 1999-2019, Steve Ivy"
     description: >
@@ -13,8 +14,10 @@ blog:
 
 postsdir: "{{ blog_posts | default(content_location + "/posts") }}"
 uploadsdir: "{{ blog_uploads | default(content_location + "/uploads")  }}"
-templatesdir: "{{ blog_templates | default(project_location + "/templates")  }}"
-staticdir: "{{ blog_static | default(project_location + "/static")  }}"
+templatesdir: "{{ blog_templates | default(theme_location + "/templates")  }}"
+staticdir: "{{ blog_static | default(theme_location + "/static")  }}"
+
+webmentionenabled: true
 
 services:
   - name: github

@@ -2,14 +2,17 @@
 # setup actual blog content
 
 - name: Clone blog files
-  # become: yes
+  become: yes
+#   become_user: '{{app_user}}'
   git:
-    repo: "{{ project_repo }}"
-    dest: "{{ project_location }}"
+    repo: "{{ theme_repo }}"
+    dest: "{{ theme_location }}"
     accept_hostkey: yes
     update: yes
 
 - name: Create Goldfrog Config
+  become: yes
+  become_user: '{{app_user}}'
   template:
     src: config.yaml.j2
     dest: "{{ blog_home }}/config.yaml"

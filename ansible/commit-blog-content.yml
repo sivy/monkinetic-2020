@@ -1,0 +1,28 @@
+---
+  - hosts: webservers
+
+    connection: ssh
+    gather_facts: true
+    vars:
+      theme_location: /var/goldfrog/monkinetic
+      content_repo: https://github.com/sivy/monkinetic-2020-content.git
+      content_location: /var/goldfrog/monkinetic-content
+
+    tasks:
+      - name: Check for Uncommitted Changes
+        command:
+          chdir: "{{ content_location }}"
+          cmd: "git status"
+        register: git_status
+
+      - name: Commit New Content and Changes
+        command:
+          cmd: "git commit -am 'Sync new content and changes from blog'"
+          chdir: "{{ content_location }}"
+        when: (git_status.stdout.find("Changes not staged for commit") != -1) or (git_status.stdout.find("Untracked files") != -1)
+
+      - name: Push New Content and Changes
+        command:
+          cmd: "git push"
+          chdir: "{{ content_location }}"
+        when: (git_status.stdout.find("Changes not staged for commit") != -1) or (git_status.stdout.find("Untracked files") != -1)
