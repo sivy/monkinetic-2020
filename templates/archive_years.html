@@ -11,10 +11,10 @@
                 title="{{ .CountPosts }} posts, {{ .CountNotes }} notes"
                 href="/archive/{{ .Year }}/{{ .Month }}">{{ .Year }}/{{ .Month }}</a>
             {{ if not (eq .CountPosts 0) }}<div class="post-bar" title="{{ .CountPosts }} posts"
-                style="min-width: 5px; width: {{ .CountPosts }}px; max-width: 300px; background-color:rgb(125, 188, 219); display:inline-block; height: 5px;">
+                style="width: {{ .CountPosts }}px;  background-color:rgb(125,188,219);">
             </div>{{ end}}
             {{ if not (eq .CountNotes 0) }}<div class="post-bar" title="{{ .CountNotes }} notes"
-                style="min-width: 5px; width: {{ .CountNotes }}px;  max-width: 300px;background-color: rgb(252, 196, 174	); display:inline-block; height: 5px;">
+                style="width:{{ .CountNotes }}px; background-color: rgba(125,188,219, 0.5);">
             </div>{{ end }}
         </span>
 

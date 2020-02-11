@@ -164,6 +164,14 @@ li.archive-item {
     list-style-type: disc;
 }
 
+/* archive chart */
+.post-bar {
+    display:inline-block;
+    height: .6em;
+    min-width: 5px;
+    max-width: 300px;
+}
+
 img {
     max-width: 100%;
 }
