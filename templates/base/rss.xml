@@ -11,10 +11,10 @@
     {{ range .Posts }}
     <item>
       <title>{{ .Title }}</title>
-      <link>{{ $.Config.Blog.Url }}{{ .Url }}</link>
+      <link>{{ $.Config.Blog.Url }}{{ .PermaLink }}</link>
       <pubDate>{{ .PostDate.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>
       <author>{{ $.Config.Blog.Author.Name }} ({{ $.Config.Blog.Author.Email }})</author>
-      <guid>{{ .Url }}</guid>
+      <guid>{{ .PermaLink }}</guid>
       <description>{{ .Body | markdown | escape }}</description>
     </item>
     {{ end }}
