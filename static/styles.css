@@ -176,6 +176,11 @@ img {
     max-width: 100%;
 }
 
+.postform {
+    padding: 0 0 1em;
+    border-bottom: 1px solid rgba(255,255,255,0.5);
+}
+
 .postform textarea {
     width:95%;
     padding: 2%;
@@ -223,7 +228,7 @@ body.pagebody .page {
 }
 
 .note {
-    margin-top: 50px;
+    margin-top: 30px;
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     /* border-bottom: 1px solid rgba(255, 255, 255, 0.3); */
     background-color: rgba(0, 0, 0, 0.2);
