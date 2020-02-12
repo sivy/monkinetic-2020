@@ -1,9 +1,11 @@
 {{ define "footer" }}
+{{ if .IsOwner }}
+<script src="/static/js/sprint.min.js"></script>
 <script src="/static/js/main.js"></script>
-
+{{ end }}
 {{ if .Config.Blog.Meta.footer_text }}
 <footer class="site-footer">
-	<p class="text">{{ .Config.Blog.Meta.footer_text }}</p>
+	<p class="text">&copy; Copyright 1999-2019, Steve Ivy</p>
 </footer>
 {{ end }}
 {{ end }}
