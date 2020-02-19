@@ -1,8 +1,33 @@
 {{ define "header" }}
-<header>
+<header class="main-head">
 	<div id="image-header"
 		style="width: 100%; height: 97px; background-image: url('/static/images/monkinetic_2019_header.png'); background-size: 666px 97px; background-repeat: repeat-x">
 	</div>
 	<div class="climate-change"><a href="/tag/climatechange">#climatechange</a> Temperatures in Arizona 1895-2018</div>
+</header>
+<header class="subheader">
+	<h1 id="title">
+		<span class="main"><a href="/">monkinetic</a></span>
+		<span class="subhead" nowrap="nowrap">the blog</span>
+	</h1>
+	<div class="h-card byline">
+		<img class="u-photo" style="display:none" src="{{ .Config.Blog.Author.Image }}">
+		<p class="p-note">The weblog of <a href="{{ .Config.Blog.Url }}" class="p-name u-url" rel="me">Steve Ivy</a>,
+			going since 1999 in
+			one form or another. Still something of a CMS junkie.
+		</p>
+		<p>XVI Edition.</p>
+	</div>
+	<nav class="nav">
+		<ul>
+			<li><i class="fa fa-fw fa-question-circle"></i> <a href="/about">About This Site</a></li>
+			<li><i class="fa fa-fw fa-archive"></i> <a href="/archive">Archive</a></li>
+			<li>
+				<i class="fa fa-fw fa-rss"></i>
+				<a href="/feed.xml" title="Subscribe to monkinetic.blog">Subscribe</a>
+			</li>
+			<li><i class="fa fa-fw fa-search"></i> <a href="/#search">Search</a></li>
+		</ul>
+	</nav>
 </header>
 {{ end }}

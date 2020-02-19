@@ -6,53 +6,18 @@
 </head>
 
 <body>
-  {{ template "header" . }}
+  <div class="wrapper">
+    {{ template "header" . }}
+    {{ template "navigation" . }}
 
-  <div class="sidebar">
-    <h1 id="title">
-      <span class="main"><a href="/">monkinetic</a></span>
-      <span class="subhead">the blog</span>
-    </h1>
-    <div class="h-card byline">
-      <img class="u-photo" style="display:none" src="{{ .Config.Blog.Author.Image }}">
-      <p class="p-note">The weblog of <a href="{{ .Config.Blog.Url }}" class="p-name u-url" rel="me">Steve Ivy</a>,
-        going since 1999 in
-        one form or another. Still something of a CMS junkie.
-      </p>
-      <p>XVI Edition.</p>
+    <div class="content">
+      {{ template "flash" . }}
+      {{ template "main" . }}
     </div>
 
-    <nav>
-      <ul class="nav navbar-nav">
-        <li><i class="fa fa-fw fa-question-circle"></i> <a href="/about">About This Site</a></li>
-        <li><i class="fa fa-fw fa-archive"></i> <a href="/archive">Archive</a></li>
-        <li>
-          <i class="fa fa-fw fa-rss"></i>
-          <a href="/feed.xml" title="Subscribe to monkinetic.blog">Subscribe</a>
-        </li>
-      </ul>
-    </nav>
-
-    {{ template "icons" . }}
-
-    <nav>
-      <h4>Search This Site:</h4>
-
-      <form action="/search" method="GET">
-        <div class="form-section">
-          <input type="text" name="s" placeholder="Search...">
-        </div>
-        <input type="submit" value="Go">
-      </form>
-    </nav>
+    {{ template "sidebar" . }}
+    {{ template "footer" . }}
   </div>
-
-  <div class="page">
-    {{ template "flash" . }}
-    {{ template "main" . }}
-  </div>
-
-  {{ template "footer" . }}
 </body>
 
 </html>

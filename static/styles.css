@@ -4,7 +4,7 @@ body {
     margin: 0 auto 50px ;
     background-color: #0F2F4F;
     color: #fff;
-    width: 760px;
+    /* width: 760px; */
     line-height: 1.2;
 }
 
@@ -43,9 +43,10 @@ h1#title .subhead {
     color: #fff;
     padding: 3px 8px;
     font-weight: normal;
+    white-space: nowrap;
 }
 h1#title span.main, h1#title span.subhead {
-    display: inline-block;
+    /* display: inline-block; */
 }
 p.byline {
     font-family: 'Montserrat', sans-serif;
@@ -57,21 +58,21 @@ p.byline {
 }
 
 footer, div.image-header {
-    width: 726px;
-    margin: 0 auto;
+    /* width: 726px; */
+    /* margin: 0 auto; */
     /* background: #daeef3; */
     padding: 20px 30px;
     clear: both;
 }
 div.page {
-    float: left;
-    width: 63%;
+    /* float: left; */
+    /* width: 63%; */
     padding: 5px 0 15px 2%;
 }
 
 .sidebar {
-    float: left;
-    width: 35%;
+    /* float: left;
+    width: 35%; */
 }
 .sidebar nav {
     margin-left: 8px;
@@ -128,7 +129,7 @@ blockquote p {
 }
 
 body.page div.page {
-    width: auto;
+    /* width: auto; */
 
 }
 
@@ -170,7 +171,7 @@ li.archive-item {
     display:inline-block;
     height: .6em;
     min-width: 5px;
-    max-width: 300px;
+    /* max-width: 300px; */
 }
 
 img {
@@ -225,7 +226,7 @@ article h2 {
 }
 
 body.pagebody .page {
-    width: 96%;
+    /* width: 96%; */
 }
 
 .note {
@@ -308,7 +309,7 @@ body.pagebody .page {
     display: flex;
     list-style-type: none;
     margin: 0 0 10px 0;
-    width:100%;
+    /* width:100%; */
     padding: 0;
     border-bottom: 4px solid rgba(255, 255, 255, 0.7);
 }
