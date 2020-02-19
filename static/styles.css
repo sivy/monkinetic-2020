@@ -261,6 +261,10 @@ body.pagebody .page {
     margin-left: 54px;
 } */
 
+.e-content img {
+    border: 3px solid rgba(255,255,255,0.9);
+}
+
 .flash {
     padding: 12px 8px;
     color: #fff;
