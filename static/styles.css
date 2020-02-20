@@ -81,8 +81,9 @@ div.page {
     padding-left: 0;
     list-style-type: none;
 }
-.sidebar nav ul li {
+nav ul li {
     margin-top: 5px;
+
 }
 
 /* header */
@@ -101,8 +102,6 @@ header nav ul {
 
 header nav ul li {
     display: inline;
-    margin: 0 8px 0 0;
-    padding: 0;
 }
 .climate-change {
     font-size: 70%;
@@ -297,9 +296,9 @@ body.pagebody .page {
     color: #fff;
 }
 
-#createpost{
+/* #createpost{
     display: none;
-}
+} */
 
 #post-tabs button.dim {
     opacity: 0.5;

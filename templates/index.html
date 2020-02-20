@@ -1,7 +1,7 @@
 {{ define "main" }}
 
 
-{{ if .IsOwner }}{{ template "noteform" . }}{{ end }}
+{{ if .IsOwner }}{{ template "contentform" . }}{{ end }}
 
 {{ range .Posts }}
 {{ $isOwner := $.IsOwner }}
