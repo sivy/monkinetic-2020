@@ -1,5 +1,4 @@
 {{ define "notecontent" }}
-
 <div class="note h-entry" id="{{ .Slug }}">
     <span class="meta h-card">
         <img class="note_avatar u-photo" src="{{ .User.Image }}">
@@ -8,6 +7,7 @@
         <span class="timestamp"><a class="u-url" href='{{ .PostDate.Format "/2006/01/02/" }}#{{ .Slug }}'><span
                     class="title-hash" style="font-weight: normal"># <time
                         class="dt-published">{{ .PostDate.Format "2006-01-02" }}</time></span></a>
+            {{ if .User.IsAdmin }} <a href="/edit/{{ .ID }}"><i class="fas fa-pencil-alt"></i></a>{{ end }}
         </span></span>
 
     <div class="e-content p-name">
