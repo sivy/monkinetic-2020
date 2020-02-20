@@ -1,7 +1,6 @@
 {{ define "postcontent" }}
 <article id="{{ .Slug }}">
-    <h2 class="p-name"><a href="{{ .PermaLink }}">{{ .Title }}</a> <span class="title-hash"
-            style="font-weight: normal"><a href="{{ .PermaLink }}">#</a></span> </h2>
+    <h2 class="p-name"><a href="{{ .PermaLink }}">{{ .Title }}</a></h2>
     <p class="post-meta">
         {{ template "postmeta" . }}
     </p>
@@ -10,6 +9,5 @@
     </div>
     {{ if .Tags }}<p>{{ range .Tags }} <a class="p-category" href="/tag/{{ . }} ">#{{ . }}</a>{{ end }}</p>{{ end }}
     {{ template "syndication" . }}
-
 </article>
 {{ end }}

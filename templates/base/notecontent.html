@@ -5,8 +5,8 @@
         <a class="u-author" href="{{ .User.Url }}">{{ .User.DisplayName }}</a>
 
         <span class="timestamp"><a class="u-url" href='{{ .PostDate.Format "/2006/01/02/" }}#{{ .Slug }}'><span
-                    class="title-hash" style="font-weight: normal"># <time
-                        class="dt-published">{{ .PostDate.Format "2006-01-02" }}</time></span></a>
+                    class="title-hash" style="font-weight: normal"># <time class="dt-published"
+                        datetime='{{ .PostDate.Format "2006-01-02 03:04:05" }}'>{{ .PostDate.Format "2006-01-02" }}</time></span></a>
             {{ if .User.IsAdmin }} <a href="/edit/{{ .ID }}"><i class="fas fa-pencil-alt"></i></a>{{ end }}
         </span></span>
 
