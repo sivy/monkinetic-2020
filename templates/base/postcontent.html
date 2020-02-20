@@ -1,5 +1,5 @@
 {{ define "postcontent" }}
-<article id="{{ .Slug }}">
+<article id="{{ .Slug }}" class="h-entry">
     <h2 class="p-name"><a href="{{ .PermaLink }}">{{ .Title }}</a></h2>
     <p class="post-meta">
         {{ template "postmeta" . }}
