@@ -71,8 +71,7 @@ div.page {
 }
 
 .sidebar {
-    /* float: left;
-    width: 35%; */
+    margin-top: 20px;
 }
 .sidebar nav {
     margin-left: 8px;
