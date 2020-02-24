@@ -40,8 +40,9 @@ h1#title .main a {
     text-decoration: none;
 }
 h1#title .subhead {
+    display: block;
     color: #fff;
-    padding: 3px 8px;
+    padding: 8px;
     font-weight: normal;
     white-space: nowrap;
 }

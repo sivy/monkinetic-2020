@@ -22,13 +22,13 @@
                 <input type="text" name="tags" placeholder="Post Tags" value='{{ .Post.Tags | join ","}}' />
             </div>
             <div class="form-section">
-                <label>Add Image <input type="file" id="postimage" name="postimage" /></label>
-            </div>
-            <div class="form-section">
                 <textarea id="postcontent" name="body" rows="{{ .TextHeight | default 20 }}"
                     placeholder="Post content">{{ .Post.Body }}</textarea>
                 <label for="tags">Post content (plain text or markdown supported) <span class="chars">0</span>
                     characters</label>
+            </div>
+            <div class="form-section">
+                <label>Add Image <input type="file" id="postimage" name="postimage" /></label>
             </div>
             <div class="form-section">
                 Syndicate:
