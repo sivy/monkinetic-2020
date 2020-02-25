@@ -124,7 +124,7 @@ blockquote {
     border-left: 2px solid rgb(255,255,255, 0.5);
 }
 blockquote p {
-    padding: 3px 10px;
+    padding:😭😭😭 3px 10px;
 }
 
 body.page div.page {
@@ -228,7 +228,7 @@ body.pagebody .page {
     /* width: 96%; */
 }
 
-.note {
+div.note {
     margin-top: 30px;
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     /* border-bottom: 1px solid rgba(255, 255, 255, 0.3); */
@@ -237,15 +237,15 @@ body.pagebody .page {
     font-size: 95%;
 }
 
-.note p {
+div.note p {
     margin-bottom: 0;
     margin-left: 58px;
 }
-.note .meta {
+div.note .meta {
     font-size: 90%;
 }
 
-.note .note_avatar {
+div.note div.note_avatar {
     float: left;
     width: 48px;
     height: 48px;
@@ -253,13 +253,9 @@ body.pagebody .page {
     margin-right: 10px;
 }
 
-.note .timestamp {
+div.note .timestamp {
     float: right;
 }
-
-/* .note .e-content, .note .syndication {
-    margin-left: 54px;
-} */
 
 .e-content img {
     border: 3px solid rgba(255,255,255,0.9);
@@ -273,9 +269,21 @@ body.pagebody .page {
     margin-bottom: 20px;
 }
 
-.note .syndication {
+div.note .syndication {
     margin-left: 58px;
 }
+
+.archive-list li {
+    margin: 10px 0px 3px;
+}
+
+.archive-list .note {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* .archive-list .article .title {
+    font-weight: bold;
+} */
 
 .syndication {
     font-size: 80%;

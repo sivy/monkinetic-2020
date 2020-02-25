@@ -1,16 +1,18 @@
 {{ define "main" }}
 <h2>Monkinetic Archive, {{ .Year }}/{{ .Month }}</h2>
 
-<ul style="list-style-type: none">
+<ul class="archive-list" style="list-style-type: none">
     {{ range .Posts }}
     {{ if .Title }}
-    <li>{{ .PostDate.Format "Jan 02, 2006" }} <a href="{{ .PermaLink }}">{{ .Title }}</a> - {{ if .Tags }} -
-        {{ range .Tags }}<a href="/tag/{{ . }} ">{{ . }}</a> {{ end }}
+    <li class="article">{{ .PostDate.Format "Jan 02, 2006" }} <a class="title" href="{{ .PermaLink }}">{{ .Title }}</a>
+        {{ if .Tags }}
+        {{ range .Tags }}<a href="/tag/{{ . }} ">#{{ . }}</a> {{ end }}
         {{ end }}</li>
     {{ else }}
-    <li>{{ .PostDate.Format "Jan 02, 2006" }} {{ .Body }} {{ if .Tags }} -
-        {{ range .Tags }}<a href="/tag/{{ . }} ">{{ . }}</a> {{ end }}
-        {{ end }} <a href="{{ .PermaLink }}">#</a> - </li>
+    <li class="note">{{ .PostDate.Format "Jan 02, 2006" }}
+        {{ .Body | markdown | striphtml | truncatechars 35 }}{{ if .Tags }} -
+        {{ range .Tags }}<a href="/tag/{{ . }} ">#{{ . }}</a> {{ end }}
+        {{ end }} <a href="{{ .PermaLink }}">#</a></li>
     {{ end }}
     {{ end }}
 </ul>
