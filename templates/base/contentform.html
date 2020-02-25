@@ -23,19 +23,21 @@
             </div>
             <div class="form-section">
                 <textarea id="postcontent" name="body" rows="{{ .TextHeight | default 20 }}"
-                    placeholder="Post content">{{ .Post.Body }}</textarea>
+                    placeholder="Say something!">{{ .Post.Body }}</textarea>
                 <label for="tags">Post content (plain text or markdown supported) <span class="chars">0</span>
                     characters</label>
             </div>
-            <div class="form-section">
-                <label>Add Image <input type="file" id="postimage" name="postimage" /></label>
+            <div id="post-options">
+                <div class="form-section">
+                    <label>Add Image <input type="file" id="postimage" name="postimage" /></label>
+                </div>
+                <div class="form-section">
+                    Syndicate:
+                    <input type="checkbox" name="twitter" value="on"> Twitter
+                    <input type="checkbox" name="mastodon" value="on"> Toot.cafe
+                </div>
             </div>
-            <div class="form-section">
-                Syndicate:
-                <input type="checkbox" name="twitter" value="on"> Twitter
-                <input type="checkbox" name="mastodon" value="on"> Toot.cafe
-            </div>
-            <button>Publish</button>
+            <button id="post-action">Publish</button>
         </form>
     </div>
 </div>
