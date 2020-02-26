@@ -5,6 +5,15 @@ for (const i of inputs) {
     i.checked = true
 }
 
+$("#title-switch").on("click", function () {
+    if ($("#title-form").css("display") == "none") {
+        $("#title-form").css("display", "block")
+        $("#title-switch").text("Hide Title")
+    } else {
+        $("#title-form").css("display", "none")
+        $("#title-switch").text("Add Title")
+    }
+})
 
 $("#postcontent").on("keyup", function () {
     var count = $(this).val().length

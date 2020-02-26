@@ -334,3 +334,9 @@ div.note .syndication {
     border: 0px;
     font-size: 100%;
 }
+
+#title-switch {
+    float: right;
+    font-weight: bold;
+    margin-right: 8px;
+}
