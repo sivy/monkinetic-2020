@@ -27,7 +27,6 @@ $("#postcontent").on("keyup", function () {
         }
     } else {
         // enabled Note options
-        $("#title-form, #slug-form").css("display", "none")
         $("#postcontent").attr("rows", 10)
         for (const i of inputs) {
             i.checked = true
