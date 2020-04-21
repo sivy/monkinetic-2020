@@ -1,0 +1,33 @@
+{{ define "rss_daily" }}
+
+<rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ .Config.Blog.Title }}</title>
+    <link>{{ .Config.Blog.Url }}</link>
+    <description>{{ .Config.Blog.Meta.description }}</description>
+    <generator>Goldfrog</generator>
+    <lastBuildDate>{{ with index .Days 0 }}{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}{{ end }}</lastBuildDate>
+
+    {{ range .Days }}
+    <item>
+      <title>Monkinetic Daily Digest for {{ .Date.Format "Monday, 02 Jan 2006" }}</title>
+      <link>{{ $.Config.Blog.Url }}{{ .Date.Format "/2006/01/02" }}</link>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" }}</pubDate>
+      <author>{{ $.Config.Blog.Author.Name }} ({{ $.Config.Blog.Author.Email }})</author>
+      <guid>{{ $.Config.Blog.Url }}{{ .Date.Format "/2006/01/02" }}</guid>
+      <content:encoded><![CDATA[
+      {{ range .Posts }}
+        <h3><a href="{{ .PermaLink }}" target="_blank">{{ .Title }}</a></h3>
+        <em>By {{ $.Config.Blog.Author.Name }}</em><br />
+
+        {{ .Body | markdown | escape }}
+      {{ end }}
+      ]]></content:encoded>
+    </item>
+    {{ end }}
+  </channel>
+</rss>
+
+{{ end }}
