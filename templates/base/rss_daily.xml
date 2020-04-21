@@ -20,13 +20,13 @@
       <guid>{{ $.Config.Blog.Url }}{{ .Date.Format "/2006/01/02" }}</guid>
       <content:encoded><![CDATA[
       {{ range .Posts }}
+        <hr>
         {{ if .Title }}
         <h3><a href="{{ .PermaLink }}" target="_blank">{{ .Title }}</a></h3>
         {{ .Body | markdown | escape }}
         {{ else }}
         <p><em>{{ .Body | markdown | escape }}</em></p>
         {{ end }}
-
       {{ end }}
       ]]></content:encoded>
     </item>
