@@ -19,10 +19,13 @@
       <guid>{{ $.Config.Blog.Url }}{{ .Date.Format "/2006/01/02" }}</guid>
       <content:encoded><![CDATA[
       {{ range .Posts }}
+        {{ if .Title }}
         <h3><a href="{{ .PermaLink }}" target="_blank">{{ .Title }}</a></h3>
-        <em>By {{ $.Config.Blog.Author.Name }}</em><br />
-
         {{ .Body | markdown | escape }}
+        {{ else }}
+        <div><em>{{ .Body | markdown | escape }}</em></div>
+        {{ end }}
+
       {{ end }}
       ]]></content:encoded>
     </item>
