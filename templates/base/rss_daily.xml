@@ -22,10 +22,11 @@
       {{ range .Posts }}
         <hr>
         {{ if .Title }}
-        <h3><a href="{{ .PermaLink }}" target="_blank">{{ .Title }}</a></h3>
+        Post: <h3><a title="View post in a browser" href="{{$.Config.Blog.Url }}{{ .PermaLink }}" target="_blank">{{ .Title }}</a></h3>
         {{ .Body | markdown | escape }}
         {{ else }}
-        <p><em>{{ .Body | markdown | escape }}</em></p>
+        <p><em>{{ .Body | markdown | escape }} <a href="{{$.Config.Blog.Url }}{{ .PermaLink }}" title="View in a browser" target="_blank">#</a></em> </p>
+        <br>
         {{ end }}
       {{ end }}
       ]]></content:encoded>
