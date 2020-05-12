@@ -1,5 +1,7 @@
 {{ define "main" }}
 <h2>Daily Digest for {{ .Date.Format "Monday, Jan 2, 2006" }}</h2>
+<p>☀️ <em>Earliest posts come first.</em></p>
+
 {{ range .Posts }}
 {{ if .Title }}
 {{ template "postcontent" . }}
