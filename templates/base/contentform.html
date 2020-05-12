@@ -33,9 +33,7 @@
                     <label>Add Image <input type="file" id="postimage" name="postimage" /></label>
                 </div>
                 <div class="form-section">
-                    Syndicate:
-                    <label style="cursor:default"><input type="checkbox" name="twitter" value="on"> Twitter</label>
-                    <label style="cursor:default"><input type="checkbox" name="mastodon" value="on"> Toot.cafe</label>
+                    {{ template "syndication_form" . }}
                 </div>
             </div>
             <button id="post-action">Publish</button> <a href="/new">New Post</a>

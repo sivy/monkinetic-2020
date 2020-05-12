@@ -25,9 +25,7 @@
                 placeholder="Post content">{{ .Post.Body }}</textarea>
         </div>
         <div class="form-section">
-            Cross-post:
-            <label style="cursor:default"><input type="checkbox" name="twitter" value="on"> Twitter</label>
-            <label style="cursor:default"><input type="checkbox" name="mastodon" value="on"> Toot.cafe</label>
+            {{ template "syndication_form" . }}
         </div>
         <button>Save Post</button>
     </form>
