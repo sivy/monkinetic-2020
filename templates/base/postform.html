@@ -14,6 +14,11 @@
         </div>
         {{ end }}
         <div class="form-section">
+            <label for="postdate">Post Date</label>
+            <input name="postdate" placeholder="2006-01-02 15:04:05"
+                value='{{ .PostDateInTimeZone.Format "2006-01-02 15:04:05" }}'>
+        </div>
+        <div class="form-section">
             <label for="tags">Tags</label>
             <input type="text" name="tags" placeholder="Post Tags" value='{{ .Post.Tags | join ","}}' />
         </div>
