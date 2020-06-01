@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-<h2>{{ .Title }}</h2>
+<h2>{{ .Title }} ({{ .Posts | length }} posts)</h2>
 
 {{ range .Posts }}
 {{ if .Title }}
