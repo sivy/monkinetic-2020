@@ -11,7 +11,7 @@
             {{ if .User.IsAdmin }} <a href="/edit/{{ .ID }}"><i class="fas fa-pencil-alt"></i></a>{{ end }}
         </span></span>
 
-    <div class="e-content p-name">
+    <div class="e-content">
         {{ .Body | markdown | hashtags }}
         <p><small>~ <a class="u-url" href='{{ .PostDate.Format "/2006/01/02/" }}#{{ .Slug }}'>#
                     {{ .PostDate.Format "15:04" }}</a>
