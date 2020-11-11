@@ -1,0 +1,43 @@
+{
+    "url": "{{ ghost_url }}",
+
+    "referrerPolicy": "origin-when-cross-origin",
+
+    "mail": {
+      "transport": "Direct"
+    },
+
+    "database": {
+        "client": "mysql",
+        "connection": {
+            "host": "localhost",
+            "user": "{{ ghost_mysql_user}}",
+            "password": "{{ ghost_mysql_password }}",
+            "database": "{{ ghost_mysql_db}}",
+            "charset": "utf8"
+        },
+        "debug": false
+    },
+
+    "fileStorage": true,
+
+    "server": {
+        "host": "0.0.0.0",
+        "port": "{{ ghost_port }}"
+    },
+
+    "paths": {
+        "contentPath": "{{ ghost_home }}/content"
+    },
+
+    "logging": {
+      "path": "/var/log/ghost/service.log",
+      "level": "debug",
+      "rotation": {
+        "enabled": true,
+        "count": 15,
+        "period": "1d"
+      },
+      "transports": ["stdout", "file"]
+    }
+}

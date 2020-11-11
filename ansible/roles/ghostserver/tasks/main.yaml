@@ -1,0 +1,110 @@
+- name: Update DNF Package repository cache
+  dnf:
+    update_cache: True
+
+- name: Install MySQL server on CentOS 8
+  dnf:
+    name: mysql-server
+    state: present
+
+- name: Install MySQL client on CentOS 8
+  dnf:
+    name: mysql
+    state: present
+
+- name: Install MySQL-python on CentOS 8
+  dnf:
+    name: python3-mysql
+    state: present
+
+- name: Make sure mysqld service is running
+  service:
+    name: mysqld
+    state: started
+    enabled: True
+
+# - name: Set MySQL root Password
+#   mysql_user:
+#     login_host: 'localhost'
+#     login_user: 'root'
+#     login_password: '{{ mysql_root_pwd }}'
+#     name: 'root'
+#     password: ''
+#     state: present
+
+- name: Create MyQL Ghost DB
+  community.mysql.mysql_db:
+    login_user: 'root'
+    login_password: '{{ mysql_root_pwd }}'
+    name: '{{ ghost_mysql_db}}'
+    state: present
+
+- name: Create MySQL Ghost user
+  community.mysql.mysql_user:
+    login_user: 'root'
+    login_password: '{{ mysql_root_pwd }}'
+    name: '{{ ghost_mysql_user}}'
+    password: '{{ ghost_mysql_password }}'
+    state: present
+    priv:
+      'ghostdb.*': 'ALL'
+
+- name: Create Ghost Home
+  file:
+    path: '{{ ghost_home }}'
+    owner: '{{app_user}}'
+    group: '{{app_group}}'
+    mode: ug+rw,o+r
+    state: directory
+
+- name: Create Ghost logdir
+  become: yes
+  file:
+    path: '/var/log/ghost'
+    owner: '{{app_user}}'
+    group: '{{app_group}}'
+    mode: ug+rw,o+r
+    state: directory
+
+- name: Download Ghost from ghost.org
+  get_url:
+    url: "{{ ghost_dist }}"
+    dest: /tmp/ghost-latest.tgz
+    force: true
+
+- name: Unarchive Ghost
+  become: yes
+  become_user: '{{ app_user }}'
+  unarchive:
+    src: /tmp/ghost-latest.tgz
+    dest: '{{ ghost_home }}'
+    remote_src: true
+
+- name: Install Ghost
+  become: yes
+  become_user: '{{app_user}}'
+  command: npm install -P
+  args:
+    chdir: '{{ ghost_home}}'
+
+- name: Create Ghost Config
+  become: yes
+  become_user: '{{app_user}}'
+  template:
+    src: config.js.j2
+    dest: "{{ ghost_home }}/config.production.json"
+
+- name: Create Ghost service
+  template:
+    src: ghost.service.j2
+    dest: /etc/systemd/system/ghost-em.service
+
+- name: Reload systemd
+  systemd:
+    daemon_reload: yes
+
+- name: Start or Restart Ghost service
+  service:
+    name: ghost-em
+    enabled: yes
+    state: restarted

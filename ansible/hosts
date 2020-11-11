@@ -1,0 +1,2 @@
+[webservers]
+173.255.215.158 ansible_connection=ssh ansible_user=root # centos-8

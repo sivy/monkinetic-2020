@@ -1,0 +1,5 @@
+- name: Start or Restart Goldfrog service
+  service:
+    name: goldfrogd
+    enabled: yes
+    state: restarted

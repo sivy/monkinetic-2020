@@ -1,0 +1,18 @@
+[Unit]
+Description=Ghost EM Blog Server
+
+[Service]
+Type=simple
+WorkingDirectory={{ ghost_home }}
+User={{ app_user }}
+Environment="NODE_ENV=production"
+ExecStart=/usr/bin/node index.js
+LogLevelMax=6
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=ghost
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+Alias=ghost-em-blog

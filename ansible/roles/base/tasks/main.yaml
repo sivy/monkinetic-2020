@@ -13,4 +13,4 @@
       - tar
       - fail2ban
       - sqlite
-
+      - npm

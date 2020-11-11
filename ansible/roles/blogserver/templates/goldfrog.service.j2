@@ -7,6 +7,8 @@ ExecStart=/usr/bin/goldfrogd --posts_dir {{ blog_posts }} --uploads_dir {{ blog_
 LogLevelMax=6
 StandardOutput=journal
 StandardError=journal
+# https://stackoverflow.com/questions/37585758/how-to-redirect-output-of-systemd-service-to-a-file
+SyslogIdentifier=goldfrog
 
 [Install]
 WantedBy=multi-user.target

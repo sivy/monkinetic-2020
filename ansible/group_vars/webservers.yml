@@ -30,3 +30,13 @@ twitter_access_secret: "{{ lookup('env','TWITTER_ACCESS_SECRET') }}"
 mastodon_client_id: "{{ lookup('env','MASTODON_CLIENT_ID') }}"
 mastodon_client_secret: "{{ lookup('env','MASTODON_CLIENT_SECRET') }}"
 mastodon_access_token: "{{ lookup('env','MASTODON_ACCESS_TOKEN') }}"
+
+mysql_root_pwd: "{{ lookup('env','MYSQL_ROOT_PWD') }}"
+
+ghost_dist: "https://ghost.org/zip/ghost-latest.zip"
+ghost_url: "http://equalmeasures.org"
+ghost_home: /var/www/ghost
+ghost_mysql_db: "ghostdb"
+ghost_mysql_user: "ghostuser"
+ghost_mysql_password: "{{ lookup('env','GHOST_PWD') }}"
+ghost_port: 2368
