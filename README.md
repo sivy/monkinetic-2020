@@ -16,4 +16,4 @@ This repository contains the blog sources for the monkinetic blog:
 
 ## EqualMeasures.org
 
-The ansible code for setting up Ghost. Eventually I want to figure out how to deploy theme changes automatically too.
+The ansible code for setting up Ghost for [equalmeasures.org](http://equalmeasures.org). Eventually I want to figure out how to deploy theme changes automatically too.
