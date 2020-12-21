@@ -33,10 +33,36 @@ mastodon_access_token: "{{ lookup('env','MASTODON_ACCESS_TOKEN') }}"
 
 mysql_root_pwd: "{{ lookup('env','MYSQL_ROOT_PWD') }}"
 
+ghost_description: Ghost EM Blog Server
 ghost_dist: "https://ghost.org/zip/ghost-latest.zip"
 ghost_url: "http://equalmeasures.org"
 ghost_home: /var/www/ghost
+ghost_log_dir: /var/log/ghost
 ghost_mysql_db: "ghostdb"
 ghost_mysql_user: "ghostuser"
 ghost_mysql_password: "{{ lookup('env','GHOST_PWD') }}"
 ghost_port: 2368
+ghost_service_alias: ghost-em
+
+ghost_sites:
+  -
+    ghost_description: Ghost Monkinetic Blog Server
+    ghost_url: "http://ghost.monkinetic.blog"
+    ghost_home: /var/www/ghost_monkinetic
+    ghost_log_dir: /var/log/ghost_monkinetic
+    ghost_mysql_db: "ghostdb-monkinetic"
+    ghost_mysql_user: "ghost_monkinitic_user"
+    ghost_mysql_password: "{{ lookup('env','GHOST_MONKINETIC_PWD') }}"
+    ghost_port: 2369
+    ghost_service_alias: ghost-monkinetic-blog
+  -
+    ghost_description: Ghost Anna Blog Server
+    ghost_dist: "https://ghost.org/zip/ghost-latest.zip"
+    ghost_url: "http://anna.monkinetic.blog"
+    ghost_home: /var/www/ghost_anna
+    ghost_log_dir: /var/log/ghost_anna
+    ghost_mysql_db: "ghostdb-anna"
+    ghost_mysql_user: "ghost_anna_user"
+    ghost_mysql_password: "{{ lookup('env','GHOST_ANNA_PWD') }}"
+    ghost_port: 2369
+    ghost_service_alias: ghost-anna-blog

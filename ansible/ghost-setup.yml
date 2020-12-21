@@ -1,9 +1,9 @@
 ---
-    - hosts: webservers
+  - hosts: webservers
 
-      connection: ssh
-      gather_facts: true
-      roles:
-        - base
-        - webserver
-        - ghostserver
+    connection: ssh
+    gather_facts: true
+    roles:
+      - base
+      - webserver
+      - ghostserver

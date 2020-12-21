@@ -1,5 +1,5 @@
 [Unit]
-Description=Ghost EM Blog Server
+Description={{ ghost_description }}
 
 [Service]
 Type=simple
@@ -15,4 +15,4 @@ Restart=always
 
 [Install]
 WantedBy=multi-user.target
-Alias=ghost-em-blog
+Alias={{ ghost_service_alias }}

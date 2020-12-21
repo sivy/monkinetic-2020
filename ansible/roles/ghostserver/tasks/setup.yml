@@ -1,0 +1,85 @@
+# - name: Set MySQL root Password
+#   mysql_user:
+#     login_host: 'localhost'
+#     login_user: 'root'
+#     login_password: '{{ mysql_root_pwd }}'
+#     name: 'root'
+#     password: ''
+#     state: present
+
+- name: 'Create MyQL Ghost DB {{ item.ghost_mysql_db}}'
+  community.mysql.mysql_db:
+    login_user: 'root'
+    login_password: '{{ mysql_root_pwd }}'
+    name: '{{ item.ghost_mysql_db}}'
+    state: present
+
+- name: Create MySQL Ghost user
+  community.mysql.mysql_user:
+    login_user: 'root'
+    login_password: '{{ mysql_root_pwd }}'
+    name: '{{ item.ghost_mysql_user}}'
+    password: '{{ item.ghost_mysql_password }}'
+    state: present
+    priv:
+      '{{ item.ghost_mysql_db }}.*': 'ALL'
+
+- name: 'Create Ghost Home in {{ item.ghost_home }}'
+  file:
+    path: '{{ item.ghost_home }}'
+    owner: '{{ app_user }}'
+    group: '{{ app_group }}'
+    mode: ug+rw,o+r
+    state: directory
+
+- name: 'Create Ghost logdir in {{ item.ghost_log_dir }}'
+  become: yes
+  file:
+    path: '{{ item.ghost_log_dir }}'
+    owner: '{{ app_user }}'
+    group: '{{ app_group }}'
+    mode: ug+rw,o+r
+    state: directory
+
+- name: Download Ghost from ghost.org
+  get_url:
+    url: "{{ item.ghost_dist }}"
+    dest: /tmp/ghost-latest.tgz
+    force: true
+
+- name: Unarchive Ghost
+  become: yes
+  become_user: '{{ app_user }}'
+  unarchive:
+    src: /tmp/ghost-latest.tgz
+    dest: '{{ item.ghost_home }}'
+    remote_src: true
+
+- name: 'Install Ghost in {{ item.ghost_home }}'
+  become: yes
+  become_user: '{{app_user}}'
+  command: npm install -P
+  args:
+    chdir: '{{ item.ghost_home}}'
+
+- name: 'Create {{ item.ghost_service_alias }} Config'
+  become: yes
+  become_user: '{{app_user}}'
+  template:
+    src: config.js.j2
+    dest: "{{ item.ghost_home }}/config.production.json"
+
+- name: 'Create {{ item.ghost_service_alias }} service'
+  template:
+    src: ghost.service.j2
+    dest: '/etc/systemd/system/{{ item.ghost_service_alias }}.service'
+
+- name: Reload systemd
+  systemd:
+    daemon_reload: yes
+
+- name: Start or Restart Ghost service
+  service:
+    name: '{{ item.ghost_service_alias }}'
+    enabled: yes
+    state: restarted

@@ -108,3 +108,14 @@
     name: ghost-em
     enabled: yes
     state: restarted
+
+- name: test
+  ansible.builtin.debug:
+    msg: "HEY"
+
+# new ghost sites
+- name: Install New Ghost Sites
+  loop: '{{ ghost_sites }}'
+  ansible.builtin.debug:
+    msg: "{{ item }}"
+  include_tasks: setup.yml
