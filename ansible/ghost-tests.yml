@@ -1,0 +1,11 @@
+---
+  - hosts: webservers
+
+    connection: ssh
+    gather_facts: true
+
+    tasks:
+      - name: check monkinetic blog
+        uri:
+          url: http://localhost:2369
+          status_code: 200
