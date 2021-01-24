@@ -97,7 +97,7 @@
 - name: Create Ghost service
   template:
     src: ghost.service.j2
-    dest: /etc/systemd/system/ghost-em.service
+    dest: '/etc/systemd/system/{{ ghost_service }}.service'
 
 - name: Reload systemd
   systemd:
@@ -105,7 +105,7 @@
 
 - name: Start or Restart Ghost service
   service:
-    name: ghost-em
+    name: '{{ ghost_service }}'
     enabled: yes
     state: restarted
 
@@ -115,7 +115,5 @@
 
 # new ghost sites
 - name: Install New Ghost Sites
-  loop: '{{ ghost_sites }}'
-  ansible.builtin.debug:
-    msg: "{{ item }}"
   include_tasks: setup.yml
+  loop: '{{ ghost_sites }}'

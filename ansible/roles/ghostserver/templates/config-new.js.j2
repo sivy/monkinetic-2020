@@ -1,5 +1,5 @@
 {
-    "url": "{{ ghost_url }}",
+    "url": "{{ item.ghost_url }}",
 
     "referrerPolicy": "origin-when-cross-origin",
 
@@ -11,9 +11,9 @@
         "client": "mysql",
         "connection": {
             "host": "localhost",
-            "user": "{{ ghost_mysql_user}}",
-            "password": "{{ ghost_mysql_password }}",
-            "database": "{{ ghost_mysql_db}}",
+            "user": "{{ item.ghost_mysql_user}}",
+            "password": "{{ item.ghost_mysql_password }}",
+            "database": "{{ item.ghost_mysql_db}}",
             "charset": "utf8"
         },
         "debug": false
@@ -23,15 +23,15 @@
 
     "server": {
         "host": "0.0.0.0",
-        "port": "{{ ghost_port }}"
+        "port": "{{ item.ghost_port }}"
     },
 
     "paths": {
-        "contentPath": "{{ ghost_home }}/content"
+        "contentPath": "{{ item.ghost_home }}/content"
     },
 
     "logging": {
-      "path": "{{ ghost_log_dir }}",
+      "path": "{{ item.ghost_log_dir }}",
       "level": "debug",
       "rotation": {
         "enabled": true,

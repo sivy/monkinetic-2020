@@ -1,12 +1,3 @@
-# - name: Set MySQL root Password
-#   mysql_user:
-#     login_host: 'localhost'
-#     login_user: 'root'
-#     login_password: '{{ mysql_root_pwd }}'
-#     name: 'root'
-#     password: ''
-#     state: present
-
 - name: 'Create MyQL Ghost DB {{ item.ghost_mysql_db}}'
   community.mysql.mysql_db:
     login_user: 'root'
@@ -20,9 +11,8 @@
     login_password: '{{ mysql_root_pwd }}'
     name: '{{ item.ghost_mysql_user}}'
     password: '{{ item.ghost_mysql_password }}'
+    priv: '{{ item.ghost_mysql_db }}.*:ALL'
     state: present
-    priv:
-      '{{ item.ghost_mysql_db }}.*': 'ALL'
 
 - name: 'Create Ghost Home in {{ item.ghost_home }}'
   file:
@@ -43,9 +33,9 @@
 
 - name: Download Ghost from ghost.org
   get_url:
-    url: "{{ item.ghost_dist }}"
+    url: "{{ ghost_dist }}"
     dest: /tmp/ghost-latest.tgz
-    force: true
+    # force: true
 
 - name: Unarchive Ghost
   become: yes
@@ -61,18 +51,19 @@
   command: npm install -P
   args:
     chdir: '{{ item.ghost_home}}'
+    creates: '{{ item.ghost_home}}/package-lock.json'
 
-- name: 'Create {{ item.ghost_service_alias }} Config'
+- name: 'Create {{ item.ghost_service }} Config'
   become: yes
   become_user: '{{app_user}}'
   template:
-    src: config.js.j2
+    src: config-new.js.j2
     dest: "{{ item.ghost_home }}/config.production.json"
 
-- name: 'Create {{ item.ghost_service_alias }} service'
+- name: 'Create {{ item.ghost_service }} service'
   template:
-    src: ghost.service.j2
-    dest: '/etc/systemd/system/{{ item.ghost_service_alias }}.service'
+    src: ghost-new.service.j2
+    dest: '/etc/systemd/system/{{ item.ghost_service }}.service'
 
 - name: Reload systemd
   systemd:
@@ -80,6 +71,6 @@
 
 - name: Start or Restart Ghost service
   service:
-    name: '{{ item.ghost_service_alias }}'
+    name: '{{ item.ghost_service }}'
     enabled: yes
     state: restarted
