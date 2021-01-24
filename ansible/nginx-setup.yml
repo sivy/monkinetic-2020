@@ -11,45 +11,6 @@
 
         nginx_config_http_template_enable: true
         nginx_config_http_template:
-          default:
-            template_file: http/default.conf.j2
-            conf_file_name: default.conf
-            conf_file_location: /etc/nginx/conf.d/
-            servers:
-              server1:
-                server_name: "173.255.215.158 monkinetic.blog www.monkinetic.blog"
-                listen:
-                  listen_localhost:
-                    ip: 0.0.0.0
-                    port: 80
-                    opts:
-                      - default_server
-
-                # ssl_certificate: /etc/letsencrypt/live/example.com/fullchain.pem
-                # ssl_certificate_key: /etc/letsencrypt/live/example.com/privkey.pem
-
-                error_page: /usr/share/nginx/html
-                client_max_body_size: 10M
-                autoindex: false
-                reverse_proxy:
-                  locations:
-                    frontend:
-                      location: /
-                      proxy_pass: http://goldfrog_server
-
-            upstreams:
-              upstream_1:
-                name: goldfrog_server
-                lb_method: least_conn
-                zone_name: frontend
-                zone_size: 64k
-                sticky_cookie: false
-                servers:
-                  frontend_server_1:
-                    address: 127.0.0.1
-                    port: 8080
-                    weight: 1
-                    health_check: max_fails=3 fail_timeout=5s
 
           ghost:
             template_file: http/default.conf.j2
@@ -63,8 +24,8 @@
                     ip: 0.0.0.0
                     port: 80
 
-                # ssl_certificate: /etc/letsencrypt/live/example.com/fullchain.pem
-                # ssl_certificate_key: /etc/letsencrypt/live/example.com/privkey.pem
+                # ssl_certificate: /etc/letsencrypt/live/equalmeasures.org/fullchain_equalmeasures_org.pem
+                # ssl_certificate_key: /etc/letsencrypt/live/equalmeasures.org/privkey_equalmeasures_org.pem
 
                 error_page: /usr/share/nginx/html
                 client_max_body_size: 10M
@@ -74,6 +35,8 @@
                     frontend:
                       location: /
                       proxy_pass: http://ghost_server
+                      proxy_connect_timeout: 300
+
             upstreams:
               upstream1:
                 name: ghost_server
@@ -85,5 +48,194 @@
                   frontend_server_2:
                     address: 127.0.0.1
                     port: 2368
+                    weight: 1
+                    health_check: max_fails=3 fail_timeout=5s
+
+          # ghost_monkinetic:
+          #   template_file: http/default.conf.j2
+          #   conf_file_name: ghost_monkinetic.conf
+          #   conf_file_location: /etc/nginx/conf.d/
+          #   servers:
+          #     server1:
+          #       server_name: "ghost.monkinetic.blog"
+          #       listen:
+          #         listen_localhost:
+          #           ip: 0.0.0.0
+          #           port: 80
+
+          #       # ssl_certificate: /etc/letsencrypt/live/example.com/fullchain.pem
+          #       # ssl_certificate_key: /etc/letsencrypt/live/example.com/privkey.pem
+
+          #       error_page: /usr/share/nginx/html
+          #       client_max_body_size: 10M
+          #       autoindex: false
+          #       reverse_proxy:
+          #         locations:
+          #           frontend:
+          #             location: /
+          #             proxy_pass: http://ghost_monkinetic_server
+          #             # proxy_connect_timeout: 300
+          #             # proxy_read_timeout: 300
+          #             # proxy_send_timeout: 300
+          #     upstream1:
+          #       name: ghost_monkinetic_server
+          #       lb_method: least_conn
+          #       zone_name: frontend
+          #       zone_size: 64k
+          #       sticky_cookie: false
+          #       servers:
+          #         frontend_server_2:
+          #           address: 127.0.0.1
+          #           port: 2369
+          #           weight: 1
+          #           health_check: max_fails=3 fail_timeout=5s
+
+          # ghost_anna:
+          #   template_file: http/default.conf.j2
+          #   conf_file_name: ghost_anna.conf
+          #   conf_file_location: /etc/nginx/conf.d/
+          #   servers:
+          #     server1:
+          #       server_name: "anna.monkinetic.blog"
+          #       listen:
+          #         listen_localhost:
+          #           ip: 0.0.0.0
+          #           port: 80
+
+          #       # ssl_certificate: /etc/letsencrypt/live/example.com/fullchain.pem
+          #       # ssl_certificate_key: /etc/letsencrypt/live/example.com/privkey.pem
+
+          #       error_page: /usr/share/nginx/html
+          #       client_max_body_size: 10M
+          #       autoindex: false
+          #       reverse_proxy:
+          #         locations:
+          #           frontend:
+          #             location: /
+          #             proxy_pass: http://ghost_anna_server
+          #             proxy_connect_timeout: 300
+          #             proxy_read_timeout: 300
+          #             proxy_send_timeout: 300
+          #   upstreams:
+          #     upstream1:
+          #       name: ghost_anna_server
+          #       lb_method: least_conn
+          #       zone_name: frontend
+          #       zone_size: 64k
+          #       sticky_cookie: false
+          #       servers:
+          #         frontend_server_2:
+          #           address: 127.0.0.1
+          #           port: 2370
+          #           weight: 1
+          #           health_check: max_fails=3 fail_timeout=5s
+
+          talk:
+            template_file: http/default.conf.j2
+            conf_file_name: nodebb.conf
+            conf_file_location: /etc/nginx/conf.d/
+            servers:
+              talk_monkinetic_http:
+                server_name: "talk.monkinetic.blog"
+                listen:
+                  listen_localhost:
+                    ip: 0.0.0.0
+                    port: 80
+                https_redirect: "$server_name"
+
+              talk_monkinetic_https:
+                server_name: "talk.monkinetic.blog"
+                listen:
+                  listen_localhost:
+                    ip: 0.0.0.0
+                    port: 443
+                    ssl: true
+                ssl:
+                  cert: /etc/letsencrypt/certs/fullchain_monkinetic.blog.crt
+                  key: /etc/letsencrypt/keys/monkinetic.blog.key
+
+                error_page: /usr/share/nginx/html
+                client_max_body_size: 10M
+                autoindex: false
+                reverse_proxy:
+                  locations:
+                    frontend:
+                      location: /
+                      proxy_pass: http://nodebb_server
+                      proxy_set_header:
+                        https_forward:
+                          name: X-Forwarded-Proto
+                          value: https
+
+            upstreams:
+              upstream1:
+                name: nodebb_server
+                lb_method: least_conn
+                zone_name: frontend
+                zone_size: 64k
+                sticky_cookie: false
+                servers:
+                  frontend_server:
+                    address: 127.0.0.1
+                    port: 4567
+                    weight: 1
+                    health_check: max_fails=3 fail_timeout=5s
+
+          default:
+            template_file: http/default.conf.j2
+            conf_file_name: default.conf
+            conf_file_location: /etc/nginx/conf.d/
+            servers:
+              monkinetic_http:
+                server_name: "monkinetic.blog"
+                listen:
+                  listen_localhost:
+                    ip: 0.0.0.0
+                    port: 80
+                https_redirect: $server_name
+
+              www_monkinetic_http:
+                server_name: "www.monkinetic.blog"
+                listen:
+                  listen_localhost:
+                    ip: 0.0.0.0
+                    port: 80
+                https_redirect: "$server_name"
+
+              monkinetic_https:
+                server_name: "monkinetic.blog www.monkinetic.blog"
+                listen:
+                  listen_localhost:
+                    ip: 0.0.0.0
+                    port: 443
+                    ssl: true
+                ssl:
+                  cert: /etc/letsencrypt/certs/fullchain_monkinetic.blog.crt
+                  key: /etc/letsencrypt/keys/monkinetic.blog.key
+
+                error_page: /usr/share/nginx/html
+                client_max_body_size: 10M
+                autoindex: false
+                reverse_proxy:
+                  locations:
+                    frontend:
+                      location: /
+                      proxy_pass: http://goldfrog_server
+                      proxy_set_header:
+                        https_forward:
+                          name: X-Forwarded-Proto
+                          value: https
+
+            upstreams:
+              upstream_1:
+                name: goldfrog_server
+                lb_method: least_conn
+                zone_name: frontend
+                zone_size: 64k
+                sticky_cookie: false
+                servers:
+                  frontend_server_1:
+                    address: 127.0.0.1
+                    port: 8080
                     weight: 1
                     health_check: max_fails=3 fail_timeout=5s
