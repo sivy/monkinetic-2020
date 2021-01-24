@@ -1,0 +1,96 @@
+---
+- hosts: webservers
+  tasks:
+    - name: "Create required directories in /etc/letsencrypt"
+      file:
+        path: "/etc/letsencrypt/{{ item }}"
+        state: directory
+        owner: root
+        group: root
+        mode: u=rwx,g=x,o=x
+      with_items:
+      - account
+      - certs
+      - csrs
+      - keys
+
+    - name: "Create .well-known/acme-challenge directory"
+      file:
+        path: /var/www/html/{{ item }}/.well-known/acme-challenge
+        state: directory
+        owner: root
+        group: root
+        mode: u=rwx,g=rx,o=rx
+      with_items: "{{ acme_domain_names }}"
+
+    - name: "Generate a Let's Encrypt account key"
+      shell: "openssl genrsa 4096 | sudo tee {{ letsencrypt_account_key }}"
+      args:
+        creates: "{{ letsencrypt_account_key }}"
+
+    - name: "Generate Let's Encrypt private key"
+      shell: "openssl genrsa 4096 | sudo tee /etc/letsencrypt/keys/{{ domain_name }}.key"
+      args:
+        creates: "/etc/letsencrypt/csrs/{{ domain_name }}.csr"
+
+    - name: "Create OpenSSL SAN config"
+      template:
+        src: san.cnf.j2
+        dest: "/etc/letsencrypt/san.cnf"
+
+    - name: "echo csr command"
+      ansible.builtin.debug:
+        msg: 'openssl req -new -sha256 -key /etc/letsencrypt/keys/{{ domain_name }}.key -subj "/CN={{ domain_name }}" -reqexts SAN -config /etc/letsencrypt/san.cnf > /etc/letsencrypt/csrs/{{ domain_name }}.csr'
+
+    - name: "Generate Let's Encrypt CSR"
+      shell: 'openssl req -new -sha256 -key /etc/letsencrypt/keys/{{ domain_name }}.key -subj "/CN={{ domain_name }}" -reqexts SAN -config /etc/letsencrypt/san.cnf > /etc/letsencrypt/csrs/{{ domain_name }}.csr'
+      args:
+        creates: "/etc/letsencrypt/csrs/{{ domain_name }}.csr"
+        executable: /bin/bash
+
+    - name: "echo request"
+      ansible.builtin.debug:
+        msg: "{{ letsencrypt_csrs_dir }}/{{ domain_name }}.csr"
+
+    - name: "Begin Let's Encrypt challenges"
+      community.crypto.acme_certificate:
+        acme_directory: "{{ acme_directory }}"
+        acme_version: "{{ acme_version }}"
+        account_key_src: "{{ letsencrypt_account_key }}"
+        account_email: "{{ acme_email }}"
+        terms_agreed: 1
+        challenge: "{{ acme_challenge_type }}"
+        csr: "{{ letsencrypt_csrs_dir }}/{{ domain_name }}.csr"
+        dest: "{{ letsencrypt_certs_dir }}/{{ domain_name }}.crt"
+        fullchain_dest: "{{ letsencrypt_certs_dir }}/fullchain_{{ domain_name }}.crt"
+        remaining_days: 91
+      register: acme_challenge_monkinetic_blog
+
+    - name: "echo challenge"
+      ansible.builtin.debug:
+        msg: "{{ acme_challenge_monkinetic_blog }}"
+
+    - name: "Implement http-01 challenge files"
+      copy:
+        content: "{{ acme_challenge_monkinetic_blog['challenge_data'][item.domain]['http-01']['resource_value'] }}"
+        dest: "/var/www/html/{{ item.dest }}/{{ acme_challenge_monkinetic_blog['challenge_data'][item.domain]['http-01']['resource'] }}"
+        owner: root
+        group: root
+        mode: u=rw,g=r,o=r
+      loop: "{{ acme_challenge_names }}"
+      when: item.domain in acme_challenge_monkinetic_blog['challenge_data']
+
+    - name: "Complete Let's Encrypt challenges"
+      community.crypto.acme_certificate:
+        account_key_src: "{{ letsencrypt_account_key }}"
+        account_email: "{{ acme_email }}"
+        src: "{{ letsencrypt_csrs_dir }}/{{ domain_name }}.csr"
+        cert: "{{ letsencrypt_certs_dir }}/{{ domain_name }}.crt"
+        fullchain_dest: "{{ letsencrypt_certs_dir }}/fullchain_{{ domain_name }}.crt"
+        chain: "{{ letsencrypt_certs_dir }}/chain_{{ domain_name }}.crt"
+        challenge: "{{ acme_challenge_type }}"
+        acme_directory: "{{ acme_directory }}"
+        remaining_days: 61
+        acme_version: "{{ acme_version }}"
+        data: "{{ acme_challenge_monkinetic_blog }}"
+      when: acme_challenge_monkinetic_blog is changed
