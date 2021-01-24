@@ -42,7 +42,7 @@ ghost_mysql_db: "ghostdb"
 ghost_mysql_user: "ghostuser"
 ghost_mysql_password: "{{ lookup('env','GHOST_PWD') }}"
 ghost_port: 2368
-ghost_service_alias: ghost-em
+ghost_service: ghost-em-blog
 
 ghost_sites:
   -
@@ -54,15 +54,52 @@ ghost_sites:
     ghost_mysql_user: "ghost_monkinitic_user"
     ghost_mysql_password: "{{ lookup('env','GHOST_MONKINETIC_PWD') }}"
     ghost_port: 2369
-    ghost_service_alias: ghost-monkinetic-blog
+    ghost_service: ghost-monkinetic-blog
+  # -
+  #   ghost_description: Ghost Anna Blog Server
+  #   ghost_dist: "https://ghost.org/zip/ghost-latest.zip"
+  #   ghost_url: "http://anna.monkinetic.blog"
+  #   ghost_home: /var/www/ghost_anna
+  #   ghost_log_dir: /var/log/ghost_anna
+  #   ghost_mysql_db: "ghostdb-anna"
+  #   ghost_mysql_user: "ghost_anna_user"
+  #   ghost_mysql_password: "{{ lookup('env','GHOST_ANNA_PWD') }}"
+  #   ghost_port: 2370
+  #   ghost_service: ghost-anna-blog
+
+discuss_user: discussuser
+discuss_group: discussusers
+
+nodebb_repo: "https://github.com/NodeBB/NodeBB"
+nodebb_version: master # "v1.10.x"
+nodebb_location: "/var/nodebb"
+# nodebb_secret
+
+acme_challenge_type: http-01
+acme_directory: https://acme-v02.api.letsencrypt.org/directory
+acme_version: 2
+acme_email: steveivy@gmail.com
+letsencrypt_dir: /etc/letsencrypt
+letsencrypt_keys_dir: /etc/letsencrypt/keys
+letsencrypt_csrs_dir: /etc/letsencrypt/csrs
+letsencrypt_certs_dir: /etc/letsencrypt/certs
+letsencrypt_account_key: /etc/letsencrypt/account/account.key
+domain_name: monkinetic.blog
+acme_domain_names:
+  - monkinetic.blog
+  - talk.monkinetic.blog
+acme_challenge_names:
   -
-    ghost_description: Ghost Anna Blog Server
-    ghost_dist: "https://ghost.org/zip/ghost-latest.zip"
-    ghost_url: "http://anna.monkinetic.blog"
-    ghost_home: /var/www/ghost_anna
-    ghost_log_dir: /var/log/ghost_anna
-    ghost_mysql_db: "ghostdb-anna"
-    ghost_mysql_user: "ghost_anna_user"
-    ghost_mysql_password: "{{ lookup('env','GHOST_ANNA_PWD') }}"
-    ghost_port: 2369
-    ghost_service_alias: ghost-anna-blog
+    domain: monkinetic.blog
+    dest: monkinetic.blog
+  -
+    domain: www.monkinetic.blog
+    dest: monkinetic.blog
+  -
+    domain: talk.monkinetic.blog
+    dest: talk.monkinetic.blog
+
+san_domain_names:
+  - monkinetic.blog
+  - www.monkinetic.blog
+  - talk.monkinetic.blog

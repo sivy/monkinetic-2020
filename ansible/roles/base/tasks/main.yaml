@@ -14,3 +14,6 @@
       - fail2ban
       - sqlite
       - npm
+      # for nodebb
+      - redis
+      - ImageMagick

@@ -1,0 +1,42 @@
+- name: Create discuss group
+  become: yes
+  group:
+    name: '{{discuss_group}}'
+    state: present
+
+- name: Create discuss user
+  become: yes
+  user:
+    name: '{{discuss_user}}'
+    state: present
+    groups: '{{discuss_group}},users'
+    shell: /bin/bash
+
+- name: Make sure redis service is running
+  service:
+    name: redis
+    state: started
+    enabled: True
+
+- name: "Clone NodeBB"
+  become: yes
+  git:
+      repo: "{{ nodebb_repo }}"
+      version: "{{ nodebb_version }}"
+      dest: "{{ nodebb_location }}"
+      update: yes
+
+# - name: "Setup NodeBB"
+#   become: yes
+#   command:
+#     cmd: "./nodebb setup"
+#     chdir: "{{ nodebb_location }}"
+#     creates: package.json
+
+- name: "Enable NodeBB on Firewall"
+  firewalld:
+    zone: public
+    port: 4567/tcp
+    state: enabled
+    permanent: yes
+

@@ -3,3 +3,27 @@
     name: goldfrogd
     enabled: yes
     state: restarted
+
+- name: Start or Restart Nginx service
+  service:
+    name: nginx
+    enabled: yes
+    state: restarted
+
+- name: restart mysqld
+  service:
+    name: mysqld
+    state: restarted
+    enabled: True
+
+- name: Start or Restart EM Ghost service
+  service:
+    name: ghost-em-blog
+    enabled: yes
+    state: restarted
+
+# - name: Start or Restart Ghost services
+#   service:
+#     name: ghost-em
+#     enabled: yes
+#     state: restarted
