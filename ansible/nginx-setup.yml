@@ -24,8 +24,9 @@
                     ip: 0.0.0.0
                     port: 80
 
-                # ssl_certificate: /etc/letsencrypt/live/equalmeasures.org/fullchain_equalmeasures_org.pem
-                # ssl_certificate_key: /etc/letsencrypt/live/equalmeasures.org/privkey_equalmeasures_org.pem
+                # ssl:
+                #   cert: /etc/letsencrypt/certs/fullchain_equalmeasures.org.crt
+                #   key: /etc/letsencrypt/keys/equalmeasures.org.key
 
                 error_page: /usr/share/nginx/html
                 client_max_body_size: 10M
